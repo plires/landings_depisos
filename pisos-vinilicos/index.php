@@ -107,12 +107,16 @@
 	<link rel="stylesheet" href="./../node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="./../node_modules/slick-carousel/slick/slick.css">
 	<link rel="stylesheet" href="./../node_modules/slick-carousel/slick/slick-theme.css">
+	<link rel="stylesheet" href="./../css/whatsapp.css">
 	<link rel="stylesheet" href="./css/app.css">
 
 	<?php include('./includes/tag_manager_head.php') ?>
 </head>
 <body>
 	<?php include('./includes/tag_manager_body.php') ?>
+
+	<!-- WhatsApp -->
+  <?php include_once("./../includes/wapp.php") ?>
 
 	<!-- Header -->
 	<header>
