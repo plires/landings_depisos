@@ -18,6 +18,8 @@
 *.error_log
 */.ventas.inc.php
 ventas.inc.php
+.env
+*/.env
 
 #text editors
 *.esproj

@@ -9,14 +9,13 @@ use PHPMailer\PHPMailer\Exception;
   class App 
   {
 
-    public function registerEmailContactsInPerfit($api, $list, $post, $emailTo) 
+    public function registerEmailContactsInPerfit($api, $list, $interest, $post, $emailTo) 
     {
 
       $date = date("d-M-y H:i");
 
       $perfit = new PerfitSDK\Perfit( ['apiKey' => $api ] );
       $listId = $list;
-      $interest = PERFIT_INTEREST;
 
       $response = $perfit->post('/lists/' .$listId. '/contacts', 
         [
@@ -42,7 +41,7 @@ use PHPMailer\PHPMailer\Exception;
               ],
               [
                 'id' => 17, 
-                'value' => PERFIT_ACCOUNT
+                'value' => $_ENV['PERFIT_ACCOUNT']
               ]
             ],
           'interests' => 
@@ -101,7 +100,7 @@ use PHPMailer\PHPMailer\Exception;
         
         case 'Contacto Usuario':
           $email['template'] = $this->selectEmailTemplate($post, 'to_user', $destinationSales);
-          $email['subject'] = EMAIL_SUBJECT_USUARIO;
+          $email['subject'] = $_ENV['EMAIL_SUBJECT_USUARIO'];
           break;
         
       }
@@ -114,13 +113,13 @@ use PHPMailer\PHPMailer\Exception;
     {
 
       // $objectPhpMailer->SMTPDebug  = 3;                    
-      $objectPhpMailer->Host       = SMTP;                     
+      $objectPhpMailer->Host       = $_ENV['SMTP'];                     
       $objectPhpMailer->SMTPAuth   = true;                                   
-      $objectPhpMailer->Username   = EMAIL_CLIENT;                    
-      $objectPhpMailer->Password   = PASSWORD;                              
+      $objectPhpMailer->Username   = $_ENV['EMAIL_CLIENT'];                    
+      $objectPhpMailer->Password   = $_ENV['PASSWORD'];                              
       $objectPhpMailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
-      $objectPhpMailer->CharSet    = EMAIL_CHARSET;
-      $objectPhpMailer->Port       = EMAIL_PORT;
+      $objectPhpMailer->CharSet    = $_ENV['EMAIL_CHARSET'];
+      $objectPhpMailer->Port       = $_ENV['EMAIL_PORT'];
 
       return $objectPhpMailer;
 
@@ -137,7 +136,7 @@ use PHPMailer\PHPMailer\Exception;
       // Setear Template y asunto de los mails
       $email_content = $this->setTemplateAndEmailSubject($template, $post, $destinationSales);
 
-      if (ENVIRONMENT === 'local') {
+      if ($_ENV['ENVIRONMENT'] === 'local') {
         $mail->isSendmail();
       } else {
         $mail->isSMTP();
@@ -182,11 +181,11 @@ use PHPMailer\PHPMailer\Exception;
       );
 
       $values = array( 
-        RRSS_FACEBOOK,
-        RRSS_INSTAGRAM,
-        WHATSAPP_HREF,
-        NAME_CLIENT,
-        SECTOR_CLIENT,
+        $_ENV['RRSS_FACEBOOK'],
+        $_ENV['RRSS_INSTAGRAM'],
+        $_ENV['WHATSAPP_HREF'],
+        $_ENV['NAME_CLIENT'],
+        $_ENV['SECTOR_CLIENT'],
         $destinationSales[0],
         $destinationSales[1],
         $destinationSales[2],

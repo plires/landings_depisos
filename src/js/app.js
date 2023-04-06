@@ -1,11 +1,30 @@
+import $ from "jquery";
+import WOW from 'wow.js/dist/wow.min.js'
+
+window.setNextWhatsapp = function(rubro) {
+	fetch('./../php/set-whatsapp.php', {
+	  method: 'POST',
+	  body: JSON.stringify({rubro: rubro})
+	})
+}
+
+/* Cierra el seguidor de "Te llamamos ahora" */
+$('#cerrar-seguidor').on('click', function(){
+  $('#seguidor').slideToggle('slow');
+});
+
+$('#cerrar-seguidor-tel').on('click', function(){
+  $('#seguidor-tel').slideToggle('slow');
+});
+
 $(function() {
-    $('.btn_to_form').bind('click', function(event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top - 350
-        }, 1500, 'easeInOutExpo');
-        event.preventDefault();
-    });
+  $('.btn_to_form').bind('click', function(event) {
+    var $anchor = $(this);
+    $('html, body').stop().animate({
+      scrollTop: $($anchor.attr('href')).offset().top - 350
+    }, 1500, 'easeInOutExpo');
+    event.preventDefault();
+  });
 });
 
 // Plugin Slick (Carrousel logos) Funcion
@@ -75,4 +94,3 @@ new WOW().init();
     });
   }, false);
 })();
-

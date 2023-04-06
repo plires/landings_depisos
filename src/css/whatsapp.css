@@ -52,7 +52,7 @@
 #seguidor-tel a{ color: #3c3c3c;}
 #seguidor-tel a:hover{ color: #ffffff;}
 #seguidor-tel h5{ font-size: 14px; margin: 0px!important;}
-#cerrar-seguidor-tel{ display: inline; text-align: right; background-color: #03e97e!important; border: none; }
+#cerrar-seguidor-tel{ display: inline; text-align: right; background-color: #03e97e!important; border: none; margin-bottom:5px; }
 #cerrar-seguidor-tel:hover{ opacity: 0.6;}
 
 .btn-wap{
@@ -91,6 +91,7 @@
     right: 20px; 
     z-index: 30;
     padding: 15px;
+    padding-top: 10px;
     -webkit-box-shadow: 0 0 2px 0 rgba(0,0,0,.5);
     -moz-box-shadow: 0 0 2px 0 rgba(0,0,0,.5);
     box-shadow: 0 0 2px 0 rgba(0,0,0,.5);
