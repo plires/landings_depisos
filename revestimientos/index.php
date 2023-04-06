@@ -1,435 +1,277 @@
 <?php
 	include_once( __DIR__ . '/includes/config.inc.php' );
-	include_once( __DIR__ . '/includes/funciones_validar.php' );
+	include_once( __DIR__ . '/../vendor/autoload.php' );
+	include_once( __DIR__ . '/../includes/funciones_validar.php' );
 	include_once( __DIR__ . '/../clases/repositorioSQL.php' );
 	include_once( __DIR__ . '/../clases/app.php' );
 
-	$db = new RepositorioSQL();
-	$errors = [];
-	$name = '';
-	$email = '';
-	$phone = '';
-	$comments = '';
-	$origin = ORIGIN;
+  $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../" );
+  $dotenv->load(); 
 
-	if ( isset($_GET['utm_medium']) ) {
-		$utm_medium = $_GET['utm_medium'];
-	} else {
-		$utm_medium = "google";
-	}
+  include_once( __DIR__ . '/../includes/handle-variables-config.php' );
 
-	$rubro = RUBRO;
-
-	// Envio del formulario de contacto
-	if (isset($_POST["send"])) {
-			  
-	  if(isset($_POST['g-recaptcha-response'])){$captcha=$_POST['g-recaptcha-response'];}
-	  $secretKey = RECAPTCHA_SECRET_KEY;
-	  $ip = $_SERVER['REMOTE_ADDR'];
-	  $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
-	  $responseKeys = json_decode($response,true);
-
-	  if ($responseKeys['success']) {
-	  
-	    // Verificamos si hay errores en el formulario
-	    if (campoVacio($_POST['name'])){
-	      $errors['name']='Ingresa tu nombre';
-	    } else {
-	      $name = $_POST['name'];
-	    }
-
-	    if (!comprobar_email($_POST['email'])){
-	      $errors['email']='Ingresa el mail :(';
-	    } else {
-	      $email = $_POST['email'];
-	    }
-
-	    if (campoVacio($_POST['phone'])){
-	      $errors['phone']='Ingresa un Telefono de contacto';
-	    } else {
-	      $phone = $_POST['phone'];
-	    }
-
-	    if (campoVacio($_POST['comments'])){
-	      $errors['comments']='Ingresa tus comentarios';
-	    } else {
-	      $comments = $_POST['comments'];
-	    }
-
-	  } else {
-	    $errors['recaptcha'] = 'Error al validar el recaptcha';
-	  }
-
-	  if (!$errors) {
-
-	  	//grabamos en la base de datos y obtenemos el email destino de la consulta
-	    $emailTo = $db->getRepositorioContacts()->saveInBDD($_POST);
-
-	    //Enviamos los mails al cliente y usuario
-	    $app = new App;
-
-	    // Registramos en Perfit el contacto
-	    $app->registerEmailContactsInPerfit(PERFIT_APY_KEY, PERFIT_LIST, $_POST, $emailTo);
-
-	    $sendClient = $app->sendEmail('Cliente', 'Contacto Cliente', $_POST, $emailTo);
-	    $sendUser = $app->sendEmail('Usuario', 'Contacto Usuario', $_POST, $emailTo);
-
-	    if ($sendClient) {
-	      // Redirigimos a la pagina de gracias
-	      ?>
-	      <script type="text/javascript">
-	      window.location= 'gracias.php';
-	      </script>
-	      <?php
-	    } else {
-	      exit('Error al enviar la consulta, por favor intente nuevamente');
-	    }
-	    
-	  }
-
-	}
+	include_once( __DIR__ . '/../includes/handle-form-submit.php' );
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Linea de revestimientos para paredes. Exteriores e interiores">
-	<meta name="author" content="Librecomunicacion">
-    <!-- Favicons -->
-    <?php include('includes/favicon.inc.php'); ?>
 
-	<title>Revestimientos para Paredes Exteriores e Interiores | Depisos.com</title>
-	<link rel="stylesheet" href="./../node_modules/normalize.css/normalize.css">
-	<link rel="stylesheet" href="./../node_modules/animate.css/animate.min.css">
-	<link rel="stylesheet" href="./../node_modules/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="./../node_modules/slick-carousel/slick/slick.css">
-	<link rel="stylesheet" href="./../node_modules/slick-carousel/slick/slick-theme.css">
-	<link rel="stylesheet" href="./css/app.css">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Linea de revestimientos para paredes. Exteriores e interiores">
+		<meta name="author" content="Librecomunicacion">
 
-	<?php include('./includes/tag_manager_head.php') ?>
-</head>
-<body>
-	<?php include('./includes/tag_manager_body.php') ?>
+	  <!-- Favicons -->
+	  <?php include('./../includes/favicon.inc.php'); ?>
+	  
+		<title>Revestimientos para Paredes Exteriores e Interiores | Depisos.com</title>
+		<link rel="stylesheet" href="./css/app.css">
 
-	<!-- Header -->
-	<header>
-		<div>
-			<img class="img-fluid" src="img/logo-depisos.png" alt="logo depisos">
-		</div>
-	</header>
-	<!-- Header end -->
+		<?php include('./../includes/tag_manager_head.php') ?>
+	</head>
 
-	<!-- Imagen Destacada -->
-	<section class="container-fluid imagen_destacada">
+	<body>
+		<?php include('./../includes/tag_manager_body.php') ?>
 
-		<!-- Mejores Marcas -->
-		<div class="mejores_marcas wow fadeInRight">
-			<img class="img-fluid" src="img/marcas.png" alt="mejores marcas porcelanatos">
-			<div>
-				<p>las <span>mejores</span> <br> marcas del <br> mercado</p>
-			</div>
-		</div>
-		<!-- Mejores Marcas end -->
+		<!-- WhatsApp -->
+	  <?php
 
-		<!-- Informacion -->
-		<div class="container">
-			<div class="row">
+	  	echo "
+			<script>
+				window.rubro = '". RUBRO ."';
+			</script>
+			";
 
-				<div class="col-md-12">
-					<h1 class="wow fadeInDown">REVESTIMIENTOS<br><span>INTERIOR/EXTERIOR</span></h1>
+	  	$whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro(RUBRO, EMAIL_VENTAS_REVESTIMIENTOS);
+		 	include_once("./../includes/wapp.php") 
+		?>
 
-					<p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p>
-					<p class="wow fadeInLeft cuotas">
-						Comprá tus pisos en hasta 18 cuotas <br>
-						<span>Comunicate con nosotros y conocé más detalles</span>
-					</p>
-
-					<!-- Formulario -->
-					<form id="formulario" method="post" class="needs-validation wow fadeInUp" novalidate>
-						<input type="hidden" name="origin" value="<?= $origin ?>">
-						<input type="hidden" name="utm_medium" value="<?= $utm_medium ?>">
-						<input type="hidden" name="rubro" value="<?= $rubro ?>">
-
-						<!-- Errores Formulario -->
-						<?php if ($errors): ?>
-							<div id="error" class="alert alert-danger alert-dismissible fade show fadeInLeft" role="alert">
-							  <strong>¡Por favor verificá los datos!</strong>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							  <ul style="padding: 0;">
-							    <?php foreach ($errors as $error) { ?>
-							      <li>- <?php echo $error; ?></li>
-							    <?php } ?>
-							  </ul>
-							</div>
-						<?php endif ?>
-						<!-- Errores Formulario end -->
-
-						<p class="leyenda_presupuesta">Presupuestá Ahora!</p>
-						<!-- Name -->
-						<div class="form-group">
-							<input required type="text" class="form-control" name="name" placeholder="Nombre" value="<?= $name ?>">
-							<div class="invalid-feedback">
-			        	Por favor ingresá tu nombre
-			      	</div>
-						</div>
-						
-						<!-- Email -->
-						<div class="form-group">
-							<input required type="email" class="form-control" name="email" placeholder="Email" value="<?= $email ?>">
-							<div class="invalid-feedback">
-			        	Por favor ingresá tu email
-			      	</div>
-						</div>
-						
-						<!-- Phone -->
-						<div class="form-group">
-							<input required type="text" class="form-control" name="phone" placeholder="Teléfono" value="<?= $phone ?>">
-							<div class="invalid-feedback">
-			        	Por favor ingresá un teléfono de contacto
-			      	</div>
-						</div>
-
-						<!-- Comments -->
-						<div class="form-group">
-							<textarea required class="form-control" name="comments" rows="3" placeholder="Consulta"><?= $comments ?></textarea>
-							<div class="invalid-feedback">
-			        	Tu comentario es importante
-			      	</div>
-						</div>
-
-						<!-- reCAPTCHA  -->
-						<div id="recaptcha" class="g-recaptcha" data-sitekey="<?= RECAPTCHA_PUBLIC_KEY ?>"></div>
-
-						<!-- Newsletter -->
-						<div class="form-group form-check">
-							<input type="checkbox" checked class="form-check-input" name="newsletter">
-							<label class="form-check-label" for="newsletter">suscribe newsletter</label>
-						</div>
-
-					  <button type="submit" id="send" name="send" class="btn btn-primary transition">ENVIAR</button>
-
-					</form>
-					<!-- Formulario end -->
-
-				</div>
-
-			</div>
-		</div>
-		<!-- Informacion end -->
-
-	</section>
-	<!-- Imagen Destacada -->
-
-	<!-- Líneas -->
-	<section class="container lineas">
+		<!-- Header -->
+		<?php include_once( __DIR__ . '/../includes/header.php' );  ?>
 		
-		<div class="row">
-			<div class="col-md-12 wow fadeInUp">
-				<h2>NUESTRAS <span>LÍNEAS</span></h2>
-			</div>
-		</div>
+		<!-- Imagen Destacada -->
+		<section class="container-fluid imagen_destacada">
 
-		<div class="row wow fadeInUp">
-			<div class="col-md-4">
-				<img class="img-fluid" src="img/linea-siding.jpg" alt="revestimiento de pared siding">
-				<h3>SIDING</h3>
+			<!-- Mejores Marcas -->
+			<div class="mejores_marcas wow fadeInRight">
+				<img class="img-fluid" src="img/marcas.png" alt="mejores marcas porcelanatos">
+				<div>
+					<p>las <span>mejores</span> <br> marcas del <br> mercado</p>
+				</div>
 			</div>
-			<div class="col-md-4">
-				<img class="img-fluid" src="img/linea-wall-panel.jpg" alt="revestimiento de pared wall panel">
-				<h3>WALL PANEL</h3>
-			</div>
-			<div class="col-md-4">
-				<img class="img-fluid" src="img/linea-perfiles.jpg" alt="revestimiento de pared perfiles">
-				<h3>PERFILES</h3>
-			</div>
-		</div>
+			<!-- Mejores Marcas end -->
 
-		<div class="row wow fadeInUp">
-			<div class="col-lg-8 mx-auto">
-				<p class="parrafo">
-					Además contamos con una completa línea de accesorios: Ángulos, Fijaciones, Tornillos.
-				</p>
+			<!-- Informacion -->
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-12">
+						<h1 class="wow fadeInDown">REVESTIMIENTOS<br><span>INTERIOR/EXTERIOR</span></h1>
+
+						<p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p>
+						<p class="wow fadeInLeft cuotas">
+							Comprá tus pisos en hasta 18 cuotas <br>
+							<span>Comunicate con nosotros y conocé más detalles</span>
+						</p>
+
+						<!-- Formulario -->
+						<form id="formulario" method="post" class="needs-validation wow fadeInUp" novalidate>
+
+							<?php include_once( __DIR__ . '/../includes/hidden-inputs.php' ); ?>
+
+							<?php include_once( __DIR__ . '/../includes/errors.php' ); ?>
+
+							<p class="leyenda_presupuesta">Presupuestá Ahora!</p>
+
+							<?php include_once( __DIR__ . '/../includes/input-name.php' ); ?>
+							<?php include_once( __DIR__ . '/../includes/input-email.php' ); ?>
+							<?php include_once( __DIR__ . '/../includes/input-phone.php' ); ?>
+							<?php include_once( __DIR__ . '/../includes/input-comments.php' ); ?>
+							<?php include_once( __DIR__ . '/../includes/input-recaptcha.php' ); ?>
+							<?php include_once( __DIR__ . '/../includes/input-newsletter.php' ); ?>
+							<?php include_once( __DIR__ . '/../includes/input-submit.php' ); ?>
+
+						</form>
+						<!-- Formulario end -->
+
+					</div>
+
+				</div>
 			</div>
-		</div>
+			<!-- Informacion end -->
 
-	</section>
-	<!-- Líneas end -->
+		</section>
+		<!-- Imagen Destacada -->
 
-	<!-- Faja Naranja -->
-	<section class="container-fluid faja_naranja">
-		<div class="container">
+		<!-- Líneas -->
+		<section class="container lineas">
+			
 			<div class="row">
-				<div class="col-md-10 m-auto col-lg-12">
-					<p class="wow fadeInUp">
-						Los revestimientos están desarrollados en WPC, lo que los convierte en productos de <span>LIBRE MANTENIMIENTO,</span> ideales para soluciones definitivas en paredes de exterior e interior.
+				<div class="col-md-12 wow fadeInUp">
+					<h2>NUESTRAS <span>LÍNEAS</span></h2>
+				</div>
+			</div>
+
+			<div class="row wow fadeInUp">
+				<div class="col-md-4">
+					<img class="img-fluid" src="img/linea-siding.jpg" alt="revestimiento de pared siding">
+					<h3>SIDING</h3>
+				</div>
+				<div class="col-md-4">
+					<img class="img-fluid" src="img/linea-wall-panel.jpg" alt="revestimiento de pared wall panel">
+					<h3>WALL PANEL</h3>
+				</div>
+				<div class="col-md-4">
+					<img class="img-fluid" src="img/linea-perfiles.jpg" alt="revestimiento de pared perfiles">
+					<h3>PERFILES</h3>
+				</div>
+			</div>
+
+			<div class="row wow fadeInUp">
+				<div class="col-lg-8 mx-auto">
+					<p class="parrafo">
+						Además contamos con una completa línea de accesorios: Ángulos, Fijaciones, Tornillos.
 					</p>
 				</div>
 			</div>
-		</div>
-	</section>
-	<!-- Faja Naranja end -->
 
-	<!-- Faja Revestimientos -->
-	<section class="container-fluid faja_revestimientos p-0">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<a href="#formulario" class="btn_to_form">
-						<img id="img_revestimientos" class="wow fadeInUp img-fluid" src="#" alt="revestimientos de paredes resistentes al sol ejemplos">
-					</a>
+		</section>
+		<!-- Líneas end -->
+
+		<!-- Faja Naranja -->
+		<section class="container-fluid faja_naranja">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 m-auto col-lg-12">
+						<p class="wow fadeInUp">
+							Los revestimientos están desarrollados en WPC, lo que los convierte en productos de <span>LIBRE MANTENIMIENTO,</span> ideales para soluciones definitivas en paredes de exterior e interior.
+						</p>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	<!-- Faja Revestimientos end -->
+		</section>
+		<!-- Faja Naranja end -->
 
-	<!-- Resistentes al Sol -->
-	<section class="container-fluid anti_sol">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 m-auto">
-					<img class="wow fadeInLeft img-fluid" src="img/icono-resistente-sol.png" alt="revestimientos de paredes resistentes al sol">
-					<p class="wow fadeInUp">Se trata de un <span>material inalterable,</span> resistente al sol, al calor y humedad extrema, que <span>no se deforma.</span></p>
+		<!-- Faja Revestimientos -->
+		<section class="container-fluid faja_revestimientos p-0">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<a href="#formulario" class="btn_to_form">
+							<img id="img_revestimientos" class="wow fadeInUp img-fluid" src="#" alt="revestimientos de paredes resistentes al sol ejemplos">
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	<!-- Resistentes al Sol end -->
+		</section>
+		<!-- Faja Revestimientos end -->
 
-	<!-- Galeria -->
-	<?php include('includes/galeria.inc.php') ?>
-	<!-- Galeria end -->
-
-	<!-- Varios -->
-	<section class="container varios">
-
-		<div class="row">
-			<div class="col-md-10 offset-md-1">
-				<div class="visita wow fadeInUp">
-					<p>
-						visitá nuestro <span>SHOWROOM</span>
-						<a href="#formulario" class="btn btn-primary transition btn_to_form">SOLICITÁ UNA VISITA</a>
-					</p>
+		<!-- Resistentes al Sol -->
+		<section class="container-fluid anti_sol">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 m-auto">
+						<img class="wow fadeInLeft img-fluid" src="img/icono-resistente-sol.png" alt="revestimientos de paredes resistentes al sol">
+						<p class="wow fadeInUp">Se trata de un <span>material inalterable,</span> resistente al sol, al calor y humedad extrema, que <span>no se deforma.</span></p>
+					</div>
 				</div>
 			</div>
-		</div>
+		</section>
+		<!-- Resistentes al Sol end -->
 
-		<div class="row caracteristicas wow fadeInUp">
+		<!-- Galeria -->
+		<?php include_once( __DIR__ . '/../includes/galeria-revestimiento.inc.php' );  ?>
 
-			<div class="col-md-6">
-				<ul>
-					<li>
-						<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 1">
-						<p>Resistentes 100% al agua</p>
-					</li>
-					<li>
-						<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 2">
-						<p>Terminación perfecta</p>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-md-6">
-				<ul>
-					<li>
-						<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 3">
-						<p>Resistentes 100% al calor</p>
-					</li>
-					<li>
-						<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 4">
-						<p>Colores naturales</p>
-					</li>
-				</ul>
-			</div>
-
-		</div>
-
-		<div class="row beneficios">
-
-			<div class="col-4 wow fadeInLeft">
-				<img class="img-fluid" src="img/presupuesto-sin-cargo.png" alt="pisos porcelanatos presupuestos sin cargo">
-				<p>Presupuestos Sin cargo</p>
-			</div>
-
-			<div data-wow-delay="0.3s" class="col-4 wow fadeInLeft">
-				<img class="img-fluid" src="img/cuotas-fijas.png" alt="pisos porcelanatos Cuotas fijas en pesos">
-				<p>Ahora 12 Cuotas fijas en pesos</p>
-			</div>
-
-			<div data-wow-delay="0.6s" class="col-4 wow fadeInLeft">
-				<img class="img-fluid" src="img/importadores-directos.png" alt="pisos porcelanatos Importadores Directos">
-				<p>Importadores Directos</p>
-			</div>
-
-		</div>
-
-	</section>
-	<!-- Varios end -->
-
-	<!-- Aplicaciones -->
-	<section class="container-fluid aplicaciones">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 offset-md-1 wow fadeInUp">
-					<h2><span>REVESTIMIENTOS:</span> APLICACIONES RECOMENDADAS</h2>
-					<p>
-						Ideal para renovar o resaltar fachadas, muros y grandes superficies. <br>Tambien utilizados en interiores otorgando un efecto único y dependiendo del diseño seleccionado, pueden cambiar por completo un ambiente <span>Solución rápida y ecológica.</span>
-					</p>
-					<p class="dudas">¿TENÉS DUDAS O CONSULTAS?</p>
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">CONTACTANOS</a>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Aplicaciones end -->
-
-	<!-- Footer -->
-	<footer>
-		<div class="container">
+		<!-- Varios -->
+		<section class="container varios">
 
 			<div class="row">
-				<div class="col-md-12">
-					<p>
-						Calle: 56 4575 - San Martin <br>
-						Teléfono: 11 6379 0009 <br>
-						<a class="btn_to_form transition" href="#formulario">
-							info@depisos.com
-						</a> <br>
-						Horarios: Lu - Vie / 9:00 - 18:00 Hs.
-						Sábados 9:30 - 13:30 Hs.
-					</p>	
+				<div class="col-md-10 offset-md-1">
+					<div class="visita wow fadeInUp">
+						<p>
+							visitá nuestro <span>SHOWROOM</span>
+							<a href="#formulario" class="btn btn-primary transition btn_to_form">SOLICITÁ UNA VISITA</a>
+						</p>
+					</div>
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-md-12">
-					<p class="copy">Copyright &copy; <?= date('Y'); ?>, All Rights Reserved.</p>
+			<div class="row caracteristicas wow fadeInUp">
+
+				<div class="col-md-6">
+					<ul>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 1">
+							<p>Resistentes 100% al agua</p>
+						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 2">
+							<p>Terminación perfecta</p>
+						</li>
+					</ul>
 				</div>
+
+				<div class="col-md-6">
+					<ul>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 3">
+							<p>Resistentes 100% al calor</p>
+						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 4">
+							<p>Colores naturales</p>
+						</li>
+					</ul>
+				</div>
+
 			</div>
 
-			<div class="row">
-				<div class="col-md-12 text-right">
-					<hr>
-					<a href="https://librecomunicacion.net/" target="_blank" rel="noopener" class="libre transition">by Libre</a>
+			<div class="row beneficios">
+
+				<div class="col-4 wow fadeInLeft">
+					<img class="img-fluid" src="img/presupuesto-sin-cargo.png" alt="pisos porcelanatos presupuestos sin cargo">
+					<p>Presupuestos Sin cargo</p>
 				</div>
+
+				<div data-wow-delay="0.3s" class="col-4 wow fadeInLeft">
+					<img class="img-fluid" src="img/cuotas-fijas.png" alt="pisos porcelanatos Cuotas fijas en pesos">
+					<p>Ahora 12 Cuotas fijas en pesos</p>
+				</div>
+
+				<div data-wow-delay="0.6s" class="col-4 wow fadeInLeft">
+					<img class="img-fluid" src="img/importadores-directos.png" alt="pisos porcelanatos Importadores Directos">
+					<p>Importadores Directos</p>
+				</div>
+
 			</div>
 
-		</div>
-	</footer>
-	<!-- Footer end -->
+		</section>
+		<!-- Varios end -->
 
-	<script src="./../node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="./../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="./../node_modules/wow.js/dist/wow.min.js"></script>
-	<script src="./../node_modules/jquery.easing/jquery.easing.min.js"></script>
-	<script src="./../node_modules/slick-carousel/slick/slick.js"></script>
-	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-	<script src="./js/app.js" ></script>
+		<!-- Aplicaciones -->
+		<section class="container-fluid aplicaciones">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 offset-md-1 wow fadeInUp">
+						<h2><span>REVESTIMIENTOS:</span> APLICACIONES RECOMENDADAS</h2>
+						<p>
+							Ideal para renovar o resaltar fachadas, muros y grandes superficies. <br>Tambien utilizados en interiores otorgando un efecto único y dependiendo del diseño seleccionado, pueden cambiar por completo un ambiente <span>Solución rápida y ecológica.</span>
+						</p>
+						<p class="dudas">¿TENÉS DUDAS O CONSULTAS?</p>
+						<a href="#formulario" class="btn btn-primary transition btn_to_form">CONTACTANOS</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Aplicaciones end -->
 
-</body>
+		<!-- Footer -->
+		<?php include_once( __DIR__ . '/../includes/footer.php' );  ?>
+
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		<script src="./../dist/main.js"></script>
+
+	</body>
 </html>

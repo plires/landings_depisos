@@ -1,5 +1,5 @@
 <!-- Galeria de imagenes start -->
-<section class="galeria slider-g">
+<section class="galeria_small slider-g">
 
   <div>
     <img src="img/revestimientos-galeria-a.jpg" alt="revestimientos de pared exteriores e interiores a">
