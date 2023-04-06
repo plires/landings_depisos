@@ -401,15 +401,11 @@
               <td align="center"  style="background-color: #FFFFFF;padding: 10px;">
                 
                 <a target="_blank" rel="noopener noreferrer" href="{facebook}">
-                  <img src="http://depisos.com/landings/ceramicos/img/facebook.png" style="margin:0; margin-right: 20px; padding:0; border:none; display:inline-block; width: 32px; height: auto;" border="0" alt="facebook" />
+                  <img src="http://depisos.com/landings/img/facebook.png" style="margin:0; margin-right: 20px; padding:0; border:none; display:inline-block; width: 32px; height: auto;" border="0" alt="facebook" />
                 </a>
 
                 <a target="_blank" rel="noopener noreferrer" href="{instagram}">
-                  <img src="http://depisos.com/landings/ceramicos/img/instagram.png" style="margin:0; margin-right: 20px; padding:0; border:none; display:inline-block; width: 32px; height: auto;" border="0" alt="instagram" />
-                </a>
-
-                <a target="_blank" rel="noopener noreferrer" href="{whatsapp_href}">
-                  <img src="http://depisos.com/landings/ceramicos/img/whatsap.png" style="margin:0; margin-right: 20px; padding:0; border:none; display:inline-block; width: 32px; height: auto;" border="0" alt="whatsapp" />
+                  <img src="http://depisos.com/landings/img/instagram.png" style="margin:0; margin-right: 0; padding:0; border:none; display:inline-block; width: 32px; height: auto;" border="0" alt="instagram" />
                 </a>
 
               </td>

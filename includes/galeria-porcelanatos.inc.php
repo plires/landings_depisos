@@ -1,5 +1,5 @@
 <!-- Galeria de imagenes start -->
-<section class="galeria slider-g">
+<section class="galeria_small slider-g">
 
   <div>
     <img src="img/porcelanatos-galeria-a.jpg" alt="porcelanatos nacionales e importados a">
