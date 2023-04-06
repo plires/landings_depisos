@@ -1,416 +1,258 @@
 <?php
 	include_once( __DIR__ . '/includes/config.inc.php' );
-	include_once( __DIR__ . '/includes/funciones_validar.php' );
+	include_once( __DIR__ . '/../vendor/autoload.php' );
+	include_once( __DIR__ . '/../includes/funciones_validar.php' );
 	include_once( __DIR__ . '/../clases/repositorioSQL.php' );
 	include_once( __DIR__ . '/../clases/app.php' );
 
-	$db = new RepositorioSQL();
-	$errors = [];
-	$name = '';
-	$email = '';
-	$phone = '';
-	$comments = '';
-	$origin = ORIGIN;
+  $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../" );
+  $dotenv->load(); 
 
-	if ( isset($_GET['utm_medium']) ) {
-		$utm_medium = $_GET['utm_medium'];
-	} else {
-		$utm_medium = "google";
-	}
+  include_once( __DIR__ . '/../includes/handle-variables-config.php' );
 
-	$rubro = RUBRO;
-
-	// Envio del formulario de contacto
-	if (isset($_POST["send"])) {
-			  
-	  if(isset($_POST['g-recaptcha-response'])){$captcha=$_POST['g-recaptcha-response'];}
-	  $secretKey = RECAPTCHA_SECRET_KEY;
-	  $ip = $_SERVER['REMOTE_ADDR'];
-	  $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
-	  $responseKeys = json_decode($response,true);
-
-	  if ($responseKeys['success']) {
-	  
-	    // Verificamos si hay errores en el formulario
-	    if (campoVacio($_POST['name'])){
-	      $errors['name']='Ingresa tu nombre';
-	    } else {
-	      $name = $_POST['name'];
-	    }
-
-	    if (!comprobar_email($_POST['email'])){
-	      $errors['email']='Ingresa el mail :(';
-	    } else {
-	      $email = $_POST['email'];
-	    }
-
-	    if (campoVacio($_POST['phone'])){
-	      $errors['phone']='Ingresa un Telefono de contacto';
-	    } else {
-	      $phone = $_POST['phone'];
-	    }
-
-	    if (campoVacio($_POST['comments'])){
-	      $errors['comments']='Ingresa tus comentarios';
-	    } else {
-	      $comments = $_POST['comments'];
-	    }
-
-	  } else {
-	    $errors['recaptcha'] = 'Error al validar el recaptcha';
-	  }
-
-	  if (!$errors) {
-
-	  	//grabamos en la base de datos y obtenemos el email destino de la consulta
-	    $emailTo = $db->getRepositorioContacts()->saveInBDD($_POST);
-
-	    //Enviamos los mails al cliente y usuario
-	    $app = new App;
-
-	    // Registramos en Perfit el contacto
-	    $app->registerEmailContactsInPerfit(PERFIT_APY_KEY, PERFIT_LIST, $_POST, $emailTo);
-
-	    $sendClient = $app->sendEmail('Cliente', 'Contacto Cliente', $_POST, $emailTo);
-	    $sendUser = $app->sendEmail('Usuario', 'Contacto Usuario', $_POST, $emailTo);
-
-	    if ($sendClient) {
-	      // Redirigimos a la pagina de gracias
-	      ?>
-	      <script type="text/javascript">
-	      window.location= 'gracias.php';
-	      </script>
-	      <?php
-	    } else {
-	      exit('Error al enviar la consulta, por favor intente nuevamente');
-	    }
-	    
-	  }
-
-	}
+	include_once( __DIR__ . '/../includes/handle-form-submit.php' );
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Decks Sintético. Fabricado con materiales reciblables. No se pudre ni se astilla. Sin Matenimiento.">
-	<meta name="author" content="Librecomunicacion">
-    <!-- Favicons -->
-    <?php include('includes/favicon.inc.php'); ?>
 
-	<title>Decks Sintético sin mantenimiento.</title>
-	<link rel="stylesheet" href="./../node_modules/normalize.css/normalize.css">
-	<link rel="stylesheet" href="./../node_modules/animate.css/animate.min.css">
-	<link rel="stylesheet" href="./../node_modules/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="./../node_modules/slick-carousel/slick/slick.css">
-	<link rel="stylesheet" href="./../node_modules/slick-carousel/slick/slick-theme.css">
-	<link rel="stylesheet" href="./css/app.css">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Decks sintéticos. Fabricado con materiales reciblables. No se pudre ni se astilla. Sin Matenimiento.">
+		<meta name="author" content="Librecomunicacion">
 
-	<?php include('./includes/tag_manager_head.php') ?>
-</head>
-<body>
-	<?php include('./includes/tag_manager_body.php') ?>
+	  <!-- Favicons -->
+	  <?php include('./../includes/favicon.inc.php'); ?>
+	  
+		<title>Decks Plásticos sin mantenimiento.</title>
+		<link rel="stylesheet" href="./css/app.css">
 
-	<!-- Header -->
-	<header>
-		<div>
-			<img class="img-fluid" src="img/logo-depisos.png" alt="logo depisos">
-		</div>
-	</header>
-	<!-- Header end -->
+		<?php include('./../includes/tag_manager_head.php') ?>
+	</head>
 
-	<!-- Imagen Destacada -->
-	<section class="container-fluid imagen_destacada">
+	<body>
+		<?php include('./../includes/tag_manager_body.php') ?>
 
-		<!-- Mejores Marcas -->
-		<div class="mejores_marcas wow fadeInRight">
-			<img class="img-fluid" src="img/ecologico.png" alt="deck trex y otras marcas en decks sintéticos">
-			<div>
-				<p><span>95% <br></span>materiales <br>reciclados.</p>
+		<!-- WhatsApp -->
+	  <?php
+
+	  	echo "
+			<script>
+				window.rubro = '". RUBRO ."';
+			</script>
+			";
+
+	  	$whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro(RUBRO, EMAIL_VENTAS_DECKS);
+		 	include_once("./../includes/wapp.php") 
+		?>
+
+		<!-- Header -->
+		<?php include_once( __DIR__ . '/../includes/header.php' );  ?>
+		
+		<!-- Imagen Destacada -->
+		<section class="container-fluid imagen_destacada">
+
+			<!-- Mejores Marcas -->
+			<div class="mejores_marcas wow fadeInRight">
+				<img class="img-fluid" src="img/ecologico.png" alt="deck trex y otras marcas en decks sintéticos">
+				<div>
+					<p><span>95% <br></span>materiales <br>reciclados.</p>
+				</div>
 			</div>
-		</div>
-		<!-- Mejores Marcas end -->
+			<!-- Mejores Marcas end -->
 
-		<!-- Informacion -->
-		<div class="container">
-			<div class="row">
+			<!-- Informacion -->
+			<div class="container">
+				<div class="row">
 
-				<div class="col-md-12">
-					<h1 class="wow fadeInDown">DECKS <span>SINTÉTICOS</span></h1>
+					<div class="col-md-12">
+						<h1 class="wow fadeInDown">DECKS <span>SINTÉTICOS</span></h1>
 
-					<p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p>
-					<p class="wow fadeInLeft cuotas">
-						Comprá tus pisos en hasta 18 cuotas <br>
-						<span>Comunicate con nosotros y conocé más detalles</span>
-					</p>
+						<p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p>
+						<p class="wow fadeInLeft cuotas">
+							Comprá tus pisos en hasta 18 cuotas <br>
+							<span>Comunicate con nosotros y conocé más detalles</span>
+						</p>
 
-					<!-- Formulario -->
-					<form id="formulario" method="post" class="needs-validation wow fadeInUp" novalidate>
-						<input type="hidden" name="origin" value="<?= $origin ?>">
-						<input type="hidden" name="utm_medium" value="<?= $utm_medium ?>">
-						<input type="hidden" name="rubro" value="<?= $rubro ?>">
+						<!-- Formulario -->
+						<form id="formulario" method="post" class="needs-validation wow fadeInUp" novalidate>
 
-						<!-- Errores Formulario -->
-						<?php if ($errors): ?>
-							<div id="error" class="alert alert-danger alert-dismissible fade show fadeInLeft" role="alert">
-							  <strong>¡Por favor verificá los datos!</strong>
-							  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							    <span aria-hidden="true">&times;</span>
-							  </button>
-							  <ul style="padding: 0;">
-							    <?php foreach ($errors as $error) { ?>
-							      <li>- <?php echo $error; ?></li>
-							    <?php } ?>
-							  </ul>
-							</div>
-						<?php endif ?>
-						<!-- Errores Formulario end -->
+							<?php include_once( __DIR__ . '/../includes/hidden-inputs.php' ); ?>
 
-						<p class="leyenda_presupuesta">Presupuestá Ahora!</p>
-						<!-- Name -->
-						<div class="form-group">
-							<input required type="text" class="form-control" name="name" placeholder="Nombre" value="<?= $name ?>">
-							<div class="invalid-feedback">
-			        	Por favor ingresá tu nombre
-			      	</div>
-						</div>
-						
-						<!-- Email -->
-						<div class="form-group">
-							<input required type="email" class="form-control" name="email" placeholder="Email" value="<?= $email ?>">
-							<div class="invalid-feedback">
-			        	Por favor ingresá tu email
-			      	</div>
-						</div>
-						
-						<!-- Phone -->
-						<div class="form-group">
-							<input required type="text" class="form-control" name="phone" placeholder="Teléfono" value="<?= $phone ?>">
-							<div class="invalid-feedback">
-			        	Por favor ingresá un teléfono de contacto
-			      	</div>
-						</div>
+							<?php include_once( __DIR__ . '/../includes/errors.php' ); ?>
 
-						<!-- Comments -->
-						<div class="form-group">
-							<textarea required class="form-control" name="comments" rows="3" placeholder="Consulta"><?= $comments ?></textarea>
-							<div class="invalid-feedback">
-			        	Tu comentario es importante
-			      	</div>
-						</div>
+							<p class="leyenda_presupuesta">Presupuestá Ahora!</p>
 
-						<!-- reCAPTCHA  -->
-						<div id="recaptcha" class="g-recaptcha" data-sitekey="<?= RECAPTCHA_PUBLIC_KEY ?>"></div>
+							<?php include_once( __DIR__ . '/../includes/input-name.php' ); ?>
+							<?php include_once( __DIR__ . '/../includes/input-email.php' ); ?>
+							<?php include_once( __DIR__ . '/../includes/input-phone.php' ); ?>
+							<?php include_once( __DIR__ . '/../includes/input-comments.php' ); ?>
+							<?php include_once( __DIR__ . '/../includes/input-recaptcha.php' ); ?>
+							<?php include_once( __DIR__ . '/../includes/input-newsletter.php' ); ?>
+							<?php include_once( __DIR__ . '/../includes/input-submit.php' ); ?>
 
-						<!-- Newsletter -->
-						<div class="form-group form-check">
-							<input type="checkbox" checked class="form-check-input" name="newsletter">
-							<label class="form-check-label" for="newsletter">suscribe newsletter</label>
-						</div>
+						</form>
+						<!-- Formulario end -->
 
-					  <button type="submit" id="send" name="send" class="btn btn-primary transition">ENVIAR</button>
-
-					</form>
-					<!-- Formulario end -->
+					</div>
 
 				</div>
-
 			</div>
-		</div>
-		<!-- Informacion end -->
+			<!-- Informacion end -->
 
-	</section>
-	<!-- Imagen Destacada -->
+		</section>
+		<!-- Imagen Destacada -->
 
-	<!-- Líneas -->
-	<section class="container lineas">
-		
-		<div class="row">
-			<div class="col-md-12 wow fadeInUp">
-				<h2>DECKS SINTÉTICOS: <span>LÍNEAS</span></h2>
+		<!-- Líneas -->
+		<section class="container lineas">
+			
+			<div class="row">
+				<div class="col-md-12 wow fadeInUp">
+					<h2>DECKS SINTÉTICOS: <span>LÍNEAS</span></h2>
+				</div>
 			</div>
-		</div>
 
-		<div class="row wow fadeInUp">
-			<div class="col-md-6">
-				<img class="img-fluid" src="img/trascend.jpg" alt="deck ecologico y sintetico trascend">
-				<h3>TRASCEND</h3>
+			<div class="row wow fadeInUp">
+				<div class="col-md-6">
+					<img class="img-fluid" src="img/trascend.jpg" alt="deck ecologico y sintetico trascend">
+					<h3>TRASCEND</h3>
+				</div>
+				<div class="col-md-6">
+					<img class="img-fluid" src="img/contour.jpg" alt="deck ecologico y sintetico contour">
+					<h3>CONTOUR</h3>
+				</div>
+				<div class="col-md-6">
+					<img class="img-fluid" src="img/enhance.jpg" alt="deck ecologico y sintetico enhance">
+					<h3>ENHANCE</h3>
+				</div>
+				<div class="col-md-6">
+					<img class="img-fluid" src="img/co-extruded.jpg" alt="deck ecologico y sintetico co-extruded">
+					<h3>CO-EXTRUDED</h3>
+				</div>
 			</div>
-			<div class="col-md-6">
-				<img class="img-fluid" src="img/contour.jpg" alt="deck ecologico y sintetico contour">
-				<h3>CONTOUR</h3>
-			</div>
-			<div class="col-md-6">
-				<img class="img-fluid" src="img/enhance.jpg" alt="deck ecologico y sintetico enhance">
-				<h3>ENHANCE</h3>
-			</div>
-			<div class="col-md-6">
-				<img class="img-fluid" src="img/co-extruded.jpg" alt="deck ecologico y sintetico co-extruded">
-				<h3>CO-EXTRUDED</h3>
-			</div>
-		</div>
 
-	</section>
-	<!-- Líneas end -->
+		</section>
+		<!-- Líneas end -->
 
-	<!-- Faja Naranja -->
-	<section class="container-fluid faja_naranja">
-		<div class="container">
+		<!-- Faja Naranja -->
+		<section class="container-fluid faja_naranja">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 offset-md-1">
+						<p class="wow fadeInUp"><span>Depisos.com</span> te ofrece la variedad más amplia del mercado y las mejores marcas para crear los espacios 	al aire libre <span>QUE SIEMPRE SOÑASTE.</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Faja Naranja end -->
+
+		<!-- Tipologia -->
+		<section class="container tipologia">
+			<div class="row">
+				<div class="col-md-12 wow fadeInUp">
+					<h4>
+						incluye clips de fijación <span>GRATIS</span>
+						<img class="img-fluid" src="img/sistema-click.jpg" alt="sistema de fijacion oculta para decks sintéticos">
+					</h4>
+				</div>
+			</div>
+		</section>
+		<!-- Tipologia end -->
+
+		<!-- Galeria -->
+		<?php include_once( __DIR__ . '/../includes/galeria-decks.inc.php' );  ?>
+
+		<!-- Varios -->
+		<section class="container varios">
+
 			<div class="row">
 				<div class="col-md-10 offset-md-1">
-					<p class="wow fadeInUp"><span>Depisos.com</span> te ofrece la variedad más amplia del mercado y las mejores marcas para crear los espacios al aire libre <span>QUE SIEMPRE SOÑASTE.</span>
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Faja Naranja end -->
-
-	<!-- Tipologia -->
-	<section class="container tipologia">
-		<div class="row">
-			<div class="col-md-12 wow fadeInUp">
-				<h4>
-					incluye clips de fijación <span>GRATIS</span>
-					<img class="img-fluid" src="img/sistema-click.jpg" alt="sistema de fijacion oculta para decks sintéticos">
-				</h4>
-			</div>
-		</div>
-	</section>
-	<!-- Tipologia end -->
-
-	<!-- Galeria -->
-	<?php include('includes/galeria.inc.php') ?>
-	<!-- Galeria end -->
-
-	<!-- Varios -->
-	<section class="container varios">
-
-		<div class="row">
-			<div class="col-md-10 offset-md-1">
-				<div class="visita wow fadeInUp">
-					<p>
-						visitá nuestro <span>SHOWROOM</span>
-						<a href="#formulario" class="btn btn-primary transition btn_to_form">SOLICITÁ UNA VISITA</a>
-					</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="row caracteristicas wow fadeInUp">
-
-			<div class="col-md-6">
-				<ul>
-					<li>
-						<img class="img-fluid" src="img/tilde.png" alt="deck sintetico tilde 1">
-						<p>Libre de Mantenimiento</p>
-					</li>
-					<li>
-						<img class="img-fluid" src="img/tilde.png" alt="deck sintetico tilde 2">
-						<p>Resistente a la decoloración y las manchas </p>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-md-6">
-				<ul>
-					<li>
-						<img class="img-fluid" src="img/tilde.png" alt="deck sintetico tilde 3">
-						<p>Superior a la Madera</p>
-					</li>
-					<li>
-						<img class="img-fluid" src="img/tilde.png" alt="deck sintetico tilde 4">
-						<p>No se pudre, no se deforma, ni se astilla</p>
-					</li>
-				</ul>
-			</div>
-
-		</div>
-
-		<div class="row beneficios">
-
-			<div class="col-4 wow fadeInLeft">
-				<img class="img-fluid" src="img/presupuesto-sin-cargo.png" alt="deck sintetico presupuestos sin cargo">
-				<p>Presupuestos Sin cargo</p>
-			</div>
-
-			<div data-wow-delay="0.3s" class="col-4 wow fadeInLeft">
-				<img class="img-fluid" src="img/cuotas-fijas.png" alt="deck sintetico Cuotas fijas en pesos">
-				<p>Ahora 12 Cuotas fijas en pesos</p>
-			</div>
-
-			<div data-wow-delay="0.6s" class="col-4 wow fadeInLeft">
-				<img class="img-fluid" src="img/importadores-directos.png" alt="deck sintetico Importadores Directos">
-				<p>Importadores Directos</p>
-			</div>
-
-		</div>
-
-	</section>
-	<!-- Varios end -->
-
-	<!-- Aplicaciones -->
-	<section class="container-fluid aplicaciones">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 offset-md-1 wow fadeInUp">
-					<h2>DECKS SINTÉTICOS: APLICACIONES RECOMENDADAS</h2>
-					<p>
-						Nuestros <span>Decks sintéticos</span> son altamente recomendados para piletas, balcones, piscinas, espacios exteriores, terrazas, revestimiento de fachadas, entre muchos otros usos.
-					</p>
-					<p class="dudas">¿TENÉS DUDAS O CONSULTAS?</p>
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">CONTACTANOS</a>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Aplicaciones end -->
-
-	<!-- Footer -->
-	<footer>
-		<div class="container">
-
-			<div class="row">
-				<div class="col-md-12">
-					<p>
-						Calle: 56 4575 - San Martin <br>
-						Teléfono: 11 6379 0009 <br>
-						<a class="btn_to_form transition" href="#formulario">
-							info@depisos.com
-						</a> <br>
-						Horarios: Lu - Vie / 9:00 - 18:00 Hs.
-						Sábados 9:30 - 13:30 Hs.
-					</p>	
+					<div class="visita wow fadeInUp">
+						<p>
+							visitá nuestro <span>SHOWROOM</span>
+							<a href="#formulario" class="btn btn-primary transition btn_to_form">SOLICITÁ UNA VISITA</a>
+						</p>
+					</div>
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-md-12">
-					<p class="copy">Copyright &copy; <?= date('Y'); ?>, All Rights Reserved.</p>
+			<div class="row caracteristicas wow fadeInUp">
+
+				<div class="col-md-6">
+					<ul>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="deck sintéticos tilde 1">
+							<p>Libre de Mantenimiento</p>
+						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="deck sintéticos tilde 2">
+							<p>Resistente a la decoloración y las manchas </p>
+						</li>
+					</ul>
 				</div>
+
+				<div class="col-md-6">
+					<ul>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="deck sintéticos tilde 3">
+							<p>Superior a la Madera y al deck de PVC</p>
+						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="deck sintéticos tilde 4">
+							<p>No se pudre, no se deforma, ni se astilla</p>
+						</li>
+					</ul>
+				</div>
+
 			</div>
 
-			<div class="row">
-				<div class="col-md-12 text-right">
-					<hr>
-					<a href="https://librecomunicacion.net/" target="_blank" rel="noopener" class="libre transition">by Libre</a>
+			<div class="row beneficios">
+
+				<div class="col-4 wow fadeInLeft">
+					<img class="img-fluid" src="img/presupuesto-sin-cargo.png" alt="deck sintéticos presupuestos sin cargo">
+					<p>Presupuestos Sin cargo</p>
 				</div>
+
+				<div data-wow-delay="0.3s" class="col-4 wow fadeInLeft">
+					<img class="img-fluid" src="img/cuotas-fijas.png" alt="deck sintéticos Cuotas fijas en pesos">
+					<p>Ahora 12 Cuotas fijas en pesos</p>
+				</div>
+
+				<div data-wow-delay="0.6s" class="col-4 wow fadeInLeft">
+					<img class="img-fluid" src="img/importadores-directos.png" alt="deck sintéticos Importadores Directos">
+					<p>Importadores Directos</p>
+				</div>
+
 			</div>
 
-		</div>
-	</footer>
-	<!-- Footer end -->
+		</section>
+		<!-- Varios end -->
 
-	<script src="./../node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="./../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="./../node_modules/wow.js/dist/wow.min.js"></script>
-	<script src="./../node_modules/jquery.easing/jquery.easing.min.js"></script>
-	<script src="./../node_modules/slick-carousel/slick/slick.js"></script>
-	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-	<script src="./js/app.js" ></script>
+		<!-- Aplicaciones -->
+		<section class="container-fluid aplicaciones">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 offset-md-1 wow fadeInUp">
+						<h2>DECKS SINTÉTICOS: APLICACIONES RECOMENDADAS</h2>
+						<p>
+							Nuestros <span>Decks Ecológicos</span>, vulgarmente conocidos como decks de PVC o decks plásticos, son altamente recomendados para piletas, piscinas, balcones, espacios exteriores, terrazas, revestimiento de fachadas, entre muchos otros usos.
+						</p>
+						<p class="dudas">¿TENÉS DUDAS O CONSULTAS?</p>
+						<a href="#formulario" class="btn btn-primary transition btn_to_form">CONTACTANOS</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Aplicaciones end -->
 
-</body>
+		<!-- Footer -->
+		<?php include_once( __DIR__ . '/../includes/footer.php' );  ?>
+
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		<script src="./../dist/main.js"></script>
+
+	</body>
 </html>
