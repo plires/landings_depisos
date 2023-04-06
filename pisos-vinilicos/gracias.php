@@ -72,7 +72,7 @@
 					<h3>SPC SISTEMA CLICK</h3>
 				</div>
 				<div class="col-md-4">
-					<a class="transition" href="https://depisos.com/categoria-producto/pisos-a-prueba-de-agua/vinilico-click/">
+					<a class="transition" href="https://depisos.com/categoria-producto/pisos/pisos-a-prueba-de-agua/vinilicos-sistema-click/">
 						<img class="img-fluid" src="img/piso-vinilico-click.jpg" alt="pisos a prueba de agua click">
 					</a>
 					<h3>VINÍLICO CLICK</h3>
