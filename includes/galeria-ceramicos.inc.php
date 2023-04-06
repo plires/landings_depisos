@@ -1,5 +1,5 @@
 <!-- Galeria de imagenes start -->
-<section class="galeria slider-g">
+<section class="galeria_small slider-g">
 
   <div>
     <img src="img/ceramicos-galeria-a.jpg" alt="ceramicos de primera y segunda calidad. importamos las mejores marcas a">
