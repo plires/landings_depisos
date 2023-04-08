@@ -164,7 +164,6 @@ use PHPMailer\PHPMailer\Exception;
       $vars = array(
         '{facebook}',
         '{instagram}',
-        '{whatsapp_href}',
         '{name_client}',
         '{sector_client}',
         '{email_sales_client}',
@@ -183,7 +182,6 @@ use PHPMailer\PHPMailer\Exception;
       $values = array( 
         $_ENV['RRSS_FACEBOOK'],
         $_ENV['RRSS_INSTAGRAM'],
-        $_ENV['WHATSAPP_HREF'],
         $_ENV['NAME_CLIENT'],
         $_ENV['SECTOR_CLIENT'],
         $destinationSales[0],
