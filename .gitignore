@@ -13,8 +13,6 @@
 */error_log
 */img
 *.error_log
-*/.ventas.inc.php
-ventas.inc.php
 .env
 */.env
 
