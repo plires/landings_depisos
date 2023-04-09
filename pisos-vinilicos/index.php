@@ -5,6 +5,8 @@
 	include_once( __DIR__ . '/../clases/repositorioSQL.php' );
 	include_once( __DIR__ . '/../clases/app.php' );
 
+  $app = new App;
+
   $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../" );
   $dotenv->load(); 
 
@@ -38,14 +40,21 @@
 		<!-- WhatsApp -->
 	  <?php
 
-	  	echo "
-			<script>
-				window.rubro = '". RUBRO ."';
-			</script>
-			";
+	  	$dayEnabled = $app->dayOfTheWeekEnabled();
+			
+			if ( $dayEnabled ) {
+				
+		  	echo "
+				<script>
+					window.rubro = '". RUBRO ."';
+				</script>
+				";
 
-	  	$whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro(RUBRO, EMAIL_VENTAS_PISOS);
-		 	include_once("./../includes/wapp.php") 
+		  	$whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro(RUBRO, EMAIL_VENTAS_PISOS);
+			 	include_once("./../includes/wapp.php");
+
+			}
+
 		?>
 
 		<!-- Header -->

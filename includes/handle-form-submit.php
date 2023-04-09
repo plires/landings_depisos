@@ -17,9 +17,6 @@
 	  	//grabamos en la base de datos y obtenemos el email destino de la consulta
 	    $emailTo = $db->getRepositorioContacts()->saveInBDD($_POST);
 
-	    //Enviamos los mails al cliente y usuario
-	    $app = new App;
-
 	    // Registramos en Perfit el contacto
 	    $app->registerEmailContactsInPerfit($_ENV['PERFIT_APY_KEY'], $_ENV['PERFIT_LIST'], PERFIT_INTEREST, $_POST, $emailTo);
 
