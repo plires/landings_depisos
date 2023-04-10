@@ -12,34 +12,8 @@ use PHPMailer\PHPMailer\Exception;
     public function dayOfTheWeekEnabled() 
     {
 
-      switch (date('l')) {
-        case 'Monday':
-          return true;
-          break;
-        case 'Tuesday':
-          return true;
-          break;
-        case 'Wednesday':
-          return true;
-          break;
-        case 'Thursday':
-          return true;
-          break;
-        case 'Friday':
-          return true;
-          break;
-        case 'Saturday':
-          return false;
-          break;
-        case 'Sunday':
-          return false;
-          break;
-        
-        default:
-          return true;
-          break;
-      }
-        
+      return date('l') != 'Sunday' && date('l') != 'Saturday' && intval(date('H')) > 9 && intval(date('H')) < 18;
+
     }
 
     public function registerEmailContactsInPerfit($api, $list, $interest, $post, $emailTo) 
