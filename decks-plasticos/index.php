@@ -40,9 +40,9 @@
 		<!-- WhatsApp -->
 	  <?php
 
-	  	$dayEnabled = $app->dayOfTheWeekEnabled();
+	  	$whatsapp_enabled = $app->whatsappEnabled();
 			
-			if ( $dayEnabled ) {
+			if ( $whatsapp_enabled ) {
 				
 		  	echo "
 				<script>

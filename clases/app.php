@@ -9,7 +9,7 @@ use PHPMailer\PHPMailer\Exception;
   class App 
   {
 
-    public function dayOfTheWeekEnabled() 
+    public function whatsappEnabled() 
     {
 
       return date('l') != 'Sunday' && date('l') != 'Saturday' && intval(date('H')) > 9 && intval(date('H')) < 18;
