@@ -61,7 +61,7 @@
 			<div class="row wow fadeInUp">
 				<div class="col-md-6">
 					<a class="transition" href="https://depisos.com/categoria-producto/deck-ecologico/deck-en-liston/bamboo/">
-						<img class="img-fluid" src="img/trascend.jpg" alt="deck ecologico y sintetico bamboo">
+						<img class="img-fluid" src="img/bamboo.jpg" alt="deck ecologico y sintetico bamboo">
 					</a>
 					<h3>BAMBOO</h3>
 				</div>
