@@ -36,7 +36,7 @@
     onclick="setNextWhatsapp(rubro)" 
     target="_blank" 
     rel="noopener">
-      <h5>¡CONSULTÁ POR <br> WHATSAPP!</h5>
+      ¡CONSULTÁ POR <br> WHATSAPP!
 	</a>
 
 </section>
