@@ -28,21 +28,6 @@ textarea { resize: none; }
 
 .slick-slide { height: auto!important; }
 
-/* Promo Mayo */
-.promo_mayo {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.promo_mayo .content {
-  margin-bottom: 30px;
-}
-
-.promo_mayo .content:last-child {
-  margin-bottom: 0;
-}
-/* Promo Mayo end */
-
 /* Header */
 header { text-align: center; text-align: center; }
 header div{ 

@@ -115,37 +115,6 @@
 		</section>
 		<!-- Imagen Destacada -->
 
-		<!-- Promo Mayo -->
-		<section class="promo_mayo container">
-			<div class="row">
-				<div class="col-sm-6 col-lg-4 content">
-					<img class="img-fluid" src="./img/promo-mayo/porcelanicos-1.jpg" alt="porcelanicos 1">
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">COMPRAR</a>
-				</div>
-				<div class="col-sm-6 col-lg-4 content">
-					<img class="img-fluid" src="./img/promo-mayo/porcelanicos-2.jpg" alt="porcelanicos 2">
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">COMPRAR</a>
-				</div>
-				<div class="col-sm-6 col-lg-4 content">
-					<img class="img-fluid" src="./img/promo-mayo/porcelanicos-3.jpg" alt="porcelanicos 3">
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">COMPRAR</a>
-				</div>
-				<div class="col-sm-6 col-lg-4 content">
-					<img class="img-fluid" src="./img/promo-mayo/porcelanicos-4.jpg" alt="porcelanicos 4">
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">COMPRAR</a>
-				</div>
-				<div class="col-sm-6 col-lg-4 content">
-					<img class="img-fluid" src="./img/promo-mayo/porcelanicos-5.jpg" alt="porcelanicos 5">
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">COMPRAR</a>
-				</div>
-				<div class="col-sm-6 col-lg-4 content">
-					<img class="img-fluid" src="./img/promo-mayo/porcelanicos-6.jpg" alt="porcelanicos 6">
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">COMPRAR</a>
-				</div>
-			</div>
-		</section>
-		<!-- Promo Mayo end -->
-
 		<!-- Líneas -->
 		<section class="container lineas">
 			

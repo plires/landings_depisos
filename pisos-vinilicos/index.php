@@ -115,37 +115,6 @@
 		</section>
 		<!-- Imagen Destacada -->
 
-		<!-- Promo Mayo -->
-		<section class="promo_mayo container">
-			<div class="row">
-				<div class="col-sm-6 col-lg-4 content">
-					<img class="img-fluid" src="./img/promo-mayo/pisos-1.jpg" alt="pisos vinilicos a prueba de agua 1">
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">COMPRAR</a>
-				</div>
-				<div class="col-sm-6 col-lg-4 content">
-					<img class="img-fluid" src="./img/promo-mayo/pisos-2.jpg" alt="pisos vinilicos a prueba de agua 2">
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">COMPRAR</a>
-				</div>
-				<div class="col-sm-6 col-lg-4 content">
-					<img class="img-fluid" src="./img/promo-mayo/pisos-3.jpg" alt="pisos vinilicos a prueba de agua 3">
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">COMPRAR</a>
-				</div>
-				<div class="col-sm-6 col-lg-4 content">
-					<img class="img-fluid" src="./img/promo-mayo/pisos-4.jpg" alt="pisos vinilicos a prueba de agua 4">
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">COMPRAR</a>
-				</div>
-				<div class="col-sm-6 col-lg-4 content">
-					<img class="img-fluid" src="./img/promo-mayo/pisos-5.jpg" alt="pisos vinilicos a prueba de agua 5">
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">COMPRAR</a>
-				</div>
-				<div class="col-sm-6 col-lg-4 content">
-					<img class="img-fluid" src="./img/promo-mayo/pisos-6.jpg" alt="pisos vinilicos a prueba de agua 6">
-					<a href="#formulario" class="btn btn-primary transition btn_to_form">COMPRAR</a>
-				</div>
-			</div>
-		</section>
-		<!-- Promo Mayo end -->
-
 		<!-- Líneas -->
 		<section class="container lineas">
 			

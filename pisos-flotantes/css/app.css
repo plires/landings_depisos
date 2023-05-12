@@ -42,21 +42,6 @@ header div{
 }
 /* Header end*/
 
-/* Promo Mayo */
-.promo_mayo {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.promo_mayo .content {
-  margin-bottom: 30px;
-}
-
-.promo_mayo .content:last-child {
-  margin-bottom: 0;
-}
-/* Promo Mayo end */
-
 /* Imágen Destacada */
 .imagen_destacada { 
   margin-bottom: 60px;
