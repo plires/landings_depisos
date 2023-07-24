@@ -63,7 +63,7 @@ header div{
 /* Imágen Destacada end */
 
 /* Formulario */
-#formulario { background: white; padding: 15px 30px; margin-bottom: 30px; }
+#formulario { background: white; padding: 15px 30px; margin-bottom: 30px; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; }
 #formulario .leyenda_presupuesta { font-size: 1.75rem; font-weight: 900; color: var(--primary-color); text-align: center; }
 #formulario .form-check { text-align: left; color: #dcdcdc; font-size: 0.85rem; margin-top: 110px; }
 #formulario .btn-primary { width: 100%; font-size: 1.25rem; font-weight: 400; }
@@ -171,10 +171,14 @@ footer .libre:hover { color: var(--primary-color); }
 /* Footer end */
 
 /* Promo Super Days */
-.promo_super_days {
+.promo_super_days img {
   max-width: 150px!important;
   -webkit-filter: drop-shadow(5px 5px 5px #222);
   filter: drop-shadow(5px 5px 5px #222);
+}
+
+.promo_super_days p {
+  color: white;
 }
 /* Promo Super Days end */
 
@@ -334,8 +338,12 @@ footer .libre:hover { color: var(--primary-color); }
   /* Aplicaciones end */
 
   /* Promo Super Days */
-  .promo_super_days {
+  .promo_super_days img {
     max-width: 250px!important;
+  }
+
+  .promo_super_days p {
+    font-size: 1.5rem;
   }
   /* Promo Super Days end */
 
@@ -360,7 +368,7 @@ footer .libre:hover { color: var(--primary-color); }
   /* Gracias end */
 
   /* Promo Super Days */
-  .promo_super_days {
+  .promo_super_days img {
     max-width: 100%!important;
   }
   /* Promo Super Days end */
