@@ -79,6 +79,8 @@
 					<div class="col-md-12">
 						<h1 class="wow fadeInDown">PISOS <span>VINÍLICOS</span></h1>
 
+						<img class="img-fluid promo_super_days" src="./img/superdays-large.png" alt="super days promocion">
+
 						<p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p>
 
 						<p class="wow fadeInLeft cuotas">
