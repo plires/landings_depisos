@@ -170,17 +170,6 @@ footer .libre { font-size: 0.65rem; }
 footer .libre:hover { color: var(--primary-color); }
 /* Footer end */
 
-/* Promo Super Days */
-.promo_super_days img {
-  max-width: 150px!important;
-  -webkit-filter: drop-shadow(5px 5px 5px #222);
-  filter: drop-shadow(5px 5px 5px #222);
-}
-
-.promo_super_days p {
-  color: white;
-}
-/* Promo Super Days end */
 
 /* MEDIA QUERIS */
 
@@ -337,16 +326,6 @@ footer .libre:hover { color: var(--primary-color); }
   .aplicaciones .dudas { font-size: 1.65rem; }
   /* Aplicaciones end */
 
-  /* Promo Super Days */
-  .promo_super_days img {
-    max-width: 250px!important;
-  }
-
-  .promo_super_days p {
-    font-size: 1.5rem;
-  }
-  /* Promo Super Days end */
-
 }
 
 @media (min-width: 1200px) {
@@ -367,9 +346,4 @@ footer .libre:hover { color: var(--primary-color); }
   .gracias .imagen_destacada a { margin-bottom: 180px; }
   /* Gracias end */
 
-  /* Promo Super Days */
-  .promo_super_days img {
-    max-width: 100%!important;
-  }
-  /* Promo Super Days end */
 }
