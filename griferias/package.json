@@ -1,0 +1,43 @@
+{
+  "dependencies": {
+    "aos": "^2.3.4",
+    "axios": "^1.5.0",
+    "bootstrap": "^5.3.2",
+    "formik": "^2.4.5",
+    "normalize.css": "^8.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-google-recaptcha-v3": "^1.10.1",
+    "react-slick": "^0.29.0",
+    "react-toastify": "^9.1.3",
+    "slick-carousel": "^1.8.1",
+    "typewriter-effect": "^2.21.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-n": "^16.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "prettier": "^3.0.3",
+    "vite": "^4.4.5"
+  },
+  "name": "griferias",
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "format": "prettier --write .",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "type": "module",
+  "version": "0.0.0"
+}

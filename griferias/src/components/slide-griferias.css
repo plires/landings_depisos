@@ -1,0 +1,144 @@
+.slide_griferias .carousel-caption {
+  padding: 0;
+  height: 100%;
+  right: 2%;
+  left: 2%;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.slide_griferias .carousel-caption img {
+  max-width: 50%;
+  margin-top: 15px;
+  text-shadow:
+    3px 0px 7px rgba(81, 67, 21, 0.8),
+    -3px 0px 7px rgba(81, 67, 21, 0.8),
+    0px 4px 7px rgba(81, 67, 21, 0.8);
+}
+
+.slide_griferias .carousel-caption .frase {
+  margin-bottom: 0;
+  text-shadow:
+    3px 0px 7px rgba(81, 67, 21, 0.8),
+    -3px 0px 7px rgba(81, 67, 21, 0.8),
+    0px 4px 7px rgba(81, 67, 21, 0.8);
+}
+
+.slide_griferias .carousel-caption .content_promo img {
+  margin-bottom: 5px;
+}
+
+.slide_griferias .carousel-caption .content_promo p {
+  text-shadow:
+    3px 0px 7px rgba(81, 67, 21, 0.8),
+    -3px 0px 7px rgba(81, 67, 21, 0.8),
+    0px 4px 7px rgba(81, 67, 21, 0.8);
+  font-weight: 700;
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 576px) {
+  .slide_griferias .carousel-caption {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: flex-start !important;
+    text-align: left;
+    padding-bottom: 1rem;
+    right: 5%;
+    left: 5%;
+  }
+
+  .slide_griferias .carousel-caption .content_promo img {
+    margin-bottom: 10px;
+    max-width: 140px;
+  }
+
+  .slide_griferias .carousel-caption .content_promo p {
+    font-size: 0.875rem;
+  }
+
+  .slide_griferias .carousel-caption .frase {
+    font-size: 1.5rem;
+    min-height: 75px;
+  }
+
+  .slide_griferias .carousel-caption .frase br {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .slide_griferias .carousel-caption .frase {
+    font-size: 1rem;
+    min-height: 55px;
+  }
+
+  .slide_griferias .carousel-caption .frase {
+    text-shadow: none;
+  }
+
+  .slide_griferias .carousel-caption .content_promo p {
+    text-shadow: none;
+  }
+
+  .slide_griferias .gradient {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent 0%, #000000 100%);
+    min-height: 200px;
+  }
+}
+
+@media (min-width: 992px) {
+  .slide_griferias .carousel-caption {
+    bottom: 40px;
+  }
+
+  .slide_griferias .carousel-caption .content_promo img {
+    max-width: 150px;
+  }
+
+  .slide_griferias .carousel-caption .content_promo p {
+    font-size: 1rem;
+  }
+
+  .slide_griferias .carousel-caption .content_promo p br {
+    display: none;
+  }
+
+  .slide_griferias .carousel-caption .frase {
+    font-size: 1.25rem;
+    min-height: 60px;
+  }
+
+  .slide_griferias .gradient {
+    min-height: 240px;
+  }
+}
+
+@media (min-width: 1200px) {
+}
+
+@media (min-width: 1400px) {
+  .slide_griferias .carousel-caption img {
+    max-width: 160px !important;
+  }
+
+  .slide_griferias .carousel-caption .content_promo p {
+    font-size: 1.25rem;
+  }
+
+  .slide_griferias .carousel-caption .frase {
+    font-size: 2rem;
+    min-height: 100px;
+  }
+}
+
+@media (min-width: 1600px) {
+}

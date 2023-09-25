@@ -15,6 +15,14 @@
 *.error_log
 .env
 */.env
+/griferias/node_modules
+/griferias/public
+/griferias/public/img
+/griferias/README.md
+/griferias/src/assets
+/griferias/src/data
+/griferias/img-emails
+/griferias/dist
 
 #text editors
 *.esproj

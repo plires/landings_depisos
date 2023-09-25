@@ -54,6 +54,7 @@ define('MARTIN_C', array(
 //////////////////////////////////////////////////////////////////////
 /// Rotatividad de casillas segun rubros
 //////////////////////////////////////////////////////////////////////
+define('EMAIL_VENTAS_GRIFERIAS', array( AGUSTIN, ELEONORA, BARBARA ));
 define('EMAIL_VENTAS_CERAMICOS', array( ABIGAIL, BARBARA ));
 define('EMAIL_VENTAS_PISOS', array( ABIGAIL, BARBARA ));
 define('EMAIL_VENTAS_PORCELANATOS', array( ABIGAIL, BARBARA ));

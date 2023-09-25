@@ -1,0 +1,131 @@
+.featured_products {
+  margin-bottom: 30px;
+}
+
+.featured_products h2 {
+  margin-bottom: 5px;
+}
+
+.featured_products .title_promo {
+  color: var(--primary-color);
+  text-align: center;
+  animation: titlePromo 2s linear infinite;
+  -webkit-animation: titlePromo 2s linear infinite;
+}
+
+@keyframes titlePromo {
+  0% {
+    color: var(--primary-color);
+  }
+
+  50% {
+    color: var(--secondary-color);
+  }
+
+  100% {
+    color: var(--primary-color);
+  }
+}
+
+.featured_products .slick-slider {
+  margin-top: 15px;
+}
+
+.featured_products .container_product {
+  background: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.featured_products .content_product {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background: white;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.featured_products .content_product .superior {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.featured_products .content_product .superior .code {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 700;
+  padding: 5px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.featured_products .content_product .superior .img_logo_promo {
+  padding: 3px 8px;
+}
+
+.featured_products .content_product .img_thumbnail {
+  max-width: 207px;
+}
+
+.featured_products .content_product .inferior {
+  width: 100%;
+  padding: 16px;
+  background: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.featured_products .content_product .inferior p {
+  margin-bottom: 0;
+  color: white;
+  font-weight: 300;
+}
+
+.featured_products .content_product .inferior button {
+  margin-top: 10px;
+  background: white;
+  color: var(--primary-color);
+}
+
+.featured_products .content_product .inferior button:hover {
+  background: var(--secondary-color);
+  color: white;
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 576px) {
+  .featured_products .title_promo {
+    margin-bottom: 25px;
+  }
+
+  .featured_products .title_promo br {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .featured_products {
+    margin-bottom: 60px;
+  }
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}
+
+@media (min-width: 1400px) {
+}
+
+@media (min-width: 1600px) {
+  .featured_products .title_promo {
+    font-size: 1.25rem;
+  }
+}

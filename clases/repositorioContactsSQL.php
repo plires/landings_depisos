@@ -40,7 +40,11 @@ class RepositorioContactsSQL extends repositorioContacts
   public function saveInBDD($post)
   {
 
-    if (isset($_POST['newsletter'])) {
+    if(is_object($post)) {
+      $post = (array) $post;
+    }
+
+    if (isset($post['newsletter'])) {
       $newsletter = 'Si';
     } else {
       $newsletter = 'No';
@@ -48,10 +52,10 @@ class RepositorioContactsSQL extends repositorioContacts
 
     // verificar si el usuario ya consulto anteriormente.
     $userFound = $this->userFound($post['email']);
-
+    
     // Obtener el vendedor a asignar a este usuario
     $emailTo = $this->getSellerForThisUser($post['rubro'], $userFound);
-
+    
     $sql = "INSERT INTO landings values(default, :name, :email, :phone, :comments, :newsletter, :medium, :origin, :rubro, :to_email, :date)";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindValue(":name", $post['name'], PDO::PARAM_STR);
@@ -90,6 +94,9 @@ class RepositorioContactsSQL extends repositorioContacts
         break;
       case 'Revestimientos':
         $emails = EMAIL_VENTAS_REVESTIMIENTOS;
+        break;
+      case 'Griferias':
+        $emails = EMAIL_VENTAS_GRIFERIAS;
         break;
 
       default:
