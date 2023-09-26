@@ -16,7 +16,7 @@ const Servicios = () => {
       <img
         data-aos='fade-up'
         className='img-fluid'
-        src='/img/tilde.png'
+        src='./img/tilde.png'
         alt='tilde'
       />
       <Typewriter

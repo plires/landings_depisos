@@ -5,18 +5,18 @@ import './lineas.css'
 
 const Lineas = () => {
   const mozart = {
-    logo_img_src: '/img/logo-griferia-mozart.png',
+    logo_img_src: './img/logo-griferia-mozart.png',
     logo_img_alt: 'logo de griferias mozart',
-    product_img_src: '/img/linea-griferia-mozart.jpg',
+    product_img_src: './img/linea-griferia-mozart.jpg',
     product_img_alt: 'linea de griferias mozart',
     description:
       'Soluciones modernas de alta calidad y estilo, diseño e innovación accesibles para el hogar.',
   }
 
   const hidromet = {
-    logo_img_src: '/img/logo-griferia-hidromet.png',
+    logo_img_src: './img/logo-griferia-hidromet.png',
     logo_img_alt: 'logo de griferias hidromet',
-    product_img_src: '/img/linea-griferia-hidromet.jpg',
+    product_img_src: './img/linea-griferia-hidromet.jpg',
     product_img_alt: 'linea de griferias hidromet',
     description:
       'Fabricadas con materiales duraderos y tecnología de vanguardia, lo que garantiza un rendimiento confiable y una larga vida útil.',

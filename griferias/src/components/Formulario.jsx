@@ -46,7 +46,6 @@ export default function Formulario() {
 
   const sendForm = async (values, { setSubmitting, resetForm }) => {
     setLoading(true)
-    console.log(values)
 
     const token = await executeRecaptcha('form_contacto')
     values.recaptchaToken = token

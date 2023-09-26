@@ -59,7 +59,7 @@ const Whatsapp = () => {
               className='transition'
               width='20'
               height='20'
-              src='/img/close.png'
+              src='./img/close.png'
               alt='close'
               onClick={() => setWhatsappOpen(false)}
             />
@@ -68,7 +68,7 @@ const Whatsapp = () => {
           <hr style={{ margin: '10px 0' }} />
 
           <div className='click-to-call-mobile'>
-            <img src='/img/whatsapp.png' alt='whatsapp' />
+            <img src='./img/whatsapp.png' alt='whatsapp' />
           </div>
 
           <h6>
@@ -95,7 +95,7 @@ const Whatsapp = () => {
                 className='transition'
                 width='20'
                 height='20'
-                src='/img/close.png'
+                src='./img/close.png'
                 alt='close'
                 onClick={() => setWhatsappOpen(false)}
               />

@@ -26,13 +26,13 @@ const ShowRoom = () => {
             <div className='col-lg-9 offset-lg-3 grouped'>
               <img
                 className='img-fluid img_showroom'
-                src='/img/griferia.jpg'
+                src='./img/griferia.jpg'
                 alt='griferia cierre ceramico instalada'
               />
               <div className='data_showroom'>
                 <img
                   className='img-fluid'
-                  src='/img/icono-showroom.png'
+                  src='./img/icono-showroom.png'
                   alt='icono showroom griferias'
                 />
                 <p>Visita nuestro Showroom</p>

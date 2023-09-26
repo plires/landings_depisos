@@ -28,7 +28,7 @@ const Header = () => {
       <div className='content_logo transition'>
         <img
           className='img-fluid'
-          src='/img/logo-depisos.png'
+          src='./img/logo-depisos.png'
           alt='logo depisos.com'
         />
       </div>
