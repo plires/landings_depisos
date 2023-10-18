@@ -6,6 +6,7 @@
 .last_cta .cta_promo {
   animation: titlePromo 2s linear infinite;
   -webkit-animation: titlePromo 2s linear infinite;
+  text-transform: uppercase;
 }
 
 .last_cta button {

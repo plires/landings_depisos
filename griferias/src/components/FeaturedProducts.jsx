@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { StoreContext } from '../context/store'
-import { getFeaturedProducts } from './../utils/dataUtils'
+import { getFeaturedProducts, getCurrentMonth } from './../utils/dataUtils'
 import Slider from 'react-slick'
 import './../../node_modules/slick-carousel/slick/slick.css'
 import './../../node_modules/slick-carousel/slick/slick-theme.css'
@@ -80,7 +80,7 @@ const FeaturedProducts = () => {
           {isPromo && (
             <p className='promo title_promo'>
               MODELOS EN PROMOCIÓN <br />
-              ¡SÓLO POR SEPTIEMBRE!
+              ¡SÓLO POR {getCurrentMonth()}!
             </p>
           )}
           <Slider {...settings}>
@@ -88,7 +88,7 @@ const FeaturedProducts = () => {
               <div key={product.id} className='container_product'>
                 <div className='content_product'>
                   <div className='superior'>
-                    <p className='code'>Cod: {product.code}</p>
+                    <p className='code'>{product.code}</p>
                     {isPromo && (
                       <img
                         className='img-fluid img_logo_promo'
@@ -104,6 +104,7 @@ const FeaturedProducts = () => {
                   />
                   <div className='inferior'>
                     <p>{product.name}</p>
+                    <p>{product.brand}</p>
                     <button
                       className='btn'
                       onClick={() => scrollToTop(product.name, product.code)}

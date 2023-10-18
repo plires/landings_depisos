@@ -13,3 +13,9 @@ export const getFajaServicios = key => fajaServicios[key]
 export const getFeaturedProducts = key => featuredProducts[key]
 export const getAplications = key => aplications[key]
 export const getGalery = key => galery[key]
+
+export const getCurrentMonth = () => {
+  const date = new Date()
+  const month = date.toLocaleString('es-AR', { month: 'long' })
+  return month
+}

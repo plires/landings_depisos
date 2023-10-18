@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { StoreContext } from '../context/store'
-import { getSlidesPrincipal } from './../utils/dataUtils'
+import { getSlidesPrincipal, getCurrentMonth } from './../utils/dataUtils'
 
 const SlidePrincipal = ({ interval }) => {
   const slidesPrincipal = getSlidesPrincipal('slidesPrincipal')
@@ -27,7 +27,14 @@ const SlidePrincipal = ({ interval }) => {
               {isPromo && (
                 <div className='content_promo'>
                   <img src={item.img_promo_src} alt={item.img_promo_alt} />
-                  <p dangerouslySetInnerHTML={{ __html: item.txt_promo }}></p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: item.txt_promo.replace(
+                        '[MONTH]',
+                        getCurrentMonth(),
+                      ),
+                    }}
+                  ></p>
                 </div>
               )}
 

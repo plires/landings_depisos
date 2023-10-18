@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { StoreContext } from '../context/store'
+import { getCurrentMonth } from './../utils/dataUtils'
 import './last-cta.css'
 
 const LastCta = () => {
@@ -24,7 +25,9 @@ const LastCta = () => {
         <div className='content_cta col-lg-6 offset-lg-3'>
           <h2>¡Última oportunidad!</h2>
           {isPromo && (
-            <p className='promo cta_promo'>STOCK LIMITADO HASTA SEPTIEMBRE</p>
+            <p className='promo cta_promo'>
+              STOCK LIMITADO HASTA {getCurrentMonth()}
+            </p>
           )}
           <button onClick={() => scrollToTop(msg)} className='btn'>
             CONTÁCTANOS
