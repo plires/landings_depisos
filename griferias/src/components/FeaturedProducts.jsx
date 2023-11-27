@@ -93,7 +93,7 @@ const FeaturedProducts = () => {
                       <img
                         className='img-fluid img_logo_promo'
                         src={product.promo_img_src}
-                        alt={product.promo_img_alt}
+                        alt={product.promo_img_alt + ' ' + product.img_alt}
                       />
                     )}
                   </div>
