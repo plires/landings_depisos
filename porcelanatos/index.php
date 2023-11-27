@@ -22,13 +22,13 @@
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="description" content="Pisos porcelanatos. Colores naturales. Las mejores marcas y el mejor precio del mercado">
+		<meta name="description" content="Pisos de porcelanatos. Colores naturales. Las mejores marcas y el mejor precio del mercado">
 		<meta name="author" content="Librecomunicacion">
 
 	  <!-- Favicons -->
 	  <?php include('./../includes/favicon.inc.php'); ?>
 	  
-		<title>Porcelanatos. Las mejores marcas. Nacionales e importados</title>
+		<title>Pisos de Porcelanatos. Las mejores marcas. Nacionales e importados</title>
 		<link rel="stylesheet" href="./css/app.css">
 
 		<?php include('./../includes/tag_manager_head.php') ?>
@@ -144,7 +144,8 @@
 				<div class="row">
 					<div class="col-md-10 offset-md-1">
 						<p class="wow fadeInUp">
-							<span>Depisos.com</span> te ofrece la variedad más amplia de texturas y colores del mercado y las mejores marcas para crear los ambientes <span>MÁS AGRADABLES.</span>
+							<span>Depisos.com</span> te ofrece la variedad más amplia de texturas y colores del mercado y las mejores marcas para crear los ambientes <span>MÁS AGRADABLES.</span> <br>
+							<span>Consultá Ofertas Semanales de Porcelanatos</span>
 						</p>
 					</div>
 				</div>
@@ -194,18 +195,50 @@
 							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 2">
 							<p>Resistentes a golpes y arañazos</p>
 						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 4">
+							<p>Porcelanatos Simil Madera</p>
+						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 5">
+							<p>Porcelanatos Simil Cemento</p>
+						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 6">
+							<p>Porcelanatos Simil Piedra</p>
+						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 3">
+							<p>El Porcelanato más Economico del Mercado</p>
+						</li>
 					</ul>
 				</div>
 
 				<div class="col-md-6">
 					<ul>
 						<li>
-							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 3">
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 7">
 							<p>Unicos antimanchas</p>
 						</li>
 						<li>
-							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 4">
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 8">
 							<p>Colores naturales</p>
+						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 9">
+							<p>Porcelanato pulido y Rectificado</p>
+						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 10">
+							<p>Porcelanatos Simil Marmol</p>
+						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 11">
+							<p>Porcelanatos Simil Calcareos</p>
+						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 12">
+							<p>Porcelanatos de Primera y Segunda Calidad</p>
 						</li>
 					</ul>
 				</div>
@@ -215,17 +248,17 @@
 			<div class="row beneficios">
 
 				<div class="col-4 wow fadeInLeft">
-					<img class="img-fluid" src="img/presupuesto-sin-cargo.png" alt="pisos porcelanatos presupuestos sin cargo">
+					<img class="img-fluid" src="img/presupuesto-sin-cargo.png" alt="pisos de porcelanatos presupuestos sin cargo">
 					<p>Presupuestos Sin cargo</p>
 				</div>
 
 				<div data-wow-delay="0.3s" class="col-4 wow fadeInLeft">
-					<img class="img-fluid" src="img/cuotas-fijas.png" alt="pisos porcelanatos Cuotas fijas en pesos">
+					<img class="img-fluid" src="img/cuotas-fijas.png" alt="pisos de porcelanatos Cuotas fijas en pesos">
 					<p>Ahora 12 Cuotas fijas en pesos</p>
 				</div>
 
 				<div data-wow-delay="0.6s" class="col-4 wow fadeInLeft">
-					<img class="img-fluid" src="img/importadores-directos.png" alt="pisos porcelanatos Importadores Directos">
+					<img class="img-fluid" src="img/importadores-directos.png" alt="pisos de porcelanatos Importadores Directos">
 					<p>Importadores Directos</p>
 				</div>
 
@@ -239,9 +272,10 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 offset-md-1 wow fadeInUp">
-						<h2><span>PORCELANATOS:</span> APLICACIONES RECOMENDADAS</h2>
+						<h2><span>PISOS PORCELANATOS:</span> APLICACIONES RECOMENDADAS</h2>
 						<p>
-							Colocado en baños, cocinas, salas, tiendas y muchos otros sitios el porcelanato se ha convertido en un material muy buscado y utilizado por decoradores, y constructoras para crear un sinfín de ambientes con acabados de lujo, óptima calidad y gran resistencia. <span>Aptos para alto tránsito.</span>
+							Porcelanatos para baños, para cocinas cocinas, salas, tiendas y muchos otros sitios.
+							El porcelanato se ha convertido en un material muy buscado y utilizado por decoradores, y constructoras para crear un sinfín de ambientes con acabados de lujo, óptima calidad y gran resistencia. <span>Aptos para alto tránsito.</span>
 						</p>
 						<p class="dudas">¿TENÉS DUDAS O CONSULTAS?</p>
 						<a href="#formulario" class="btn btn-primary transition btn_to_form">CONTACTANOS</a>
