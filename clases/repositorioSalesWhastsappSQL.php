@@ -90,7 +90,7 @@ class RepositorioSalesWhastsappSQL extends repositorioSalesWhastsapp
     $stm->execute(array(':rubro' => $rubro));
     $row = $stm->fetch(PDO::FETCH_ASSOC);
 
-    if ( intval($row['current_position']) > count($salesEmailsForRubro) ) {
+    if ( intval($row['current_position']) >= count($salesEmailsForRubro) ) {
       $row['current_position'] = 0;
     }
 
