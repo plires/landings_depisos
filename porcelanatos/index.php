@@ -83,7 +83,7 @@
           <p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p>
 
           <p class="wow fadeInLeft cuotas">
-            Comprá tus pisos en hasta 18 cuotas <br>
+            Comprá tus pisos en hasta 12 cuotas <br>
             <span>Comunicate con nosotros y conocé más detalles</span>
           </p>
 
