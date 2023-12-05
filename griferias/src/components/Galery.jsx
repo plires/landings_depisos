@@ -9,7 +9,7 @@ const Galery = () => {
   const galery = getGalery('galery')
   const settings = {
     dots: false,
-    arrows: true,
+    arrows: false,
     infinite: true,
     autoplay: true,
     speed: 500,
@@ -21,21 +21,21 @@ const Galery = () => {
         breakpoint: 1720,
         settings: {
           slidesToShow: 4,
-          arrows: true,
+          arrows: false,
         },
       },
       {
         breakpoint: 1290,
         settings: {
           slidesToShow: 3,
-          arrows: true,
+          arrows: false,
         },
       },
       {
         breakpoint: 860,
         settings: {
           slidesToShow: 2,
-          arrows: true,
+          arrows: false,
         },
       },
       {
@@ -49,16 +49,14 @@ const Galery = () => {
   }
 
   return (
-    <section className='galery container-fluid p-0'>
-      <div data-aos='fade-up' className='row'>
-        <Slider {...settings}>
-          {galery.map(image => (
-            <div key={image.id} className='content_product'>
-              <img src={image.img_src} alt={image.img_alt} />
-            </div>
-          ))}
-        </Slider>
-      </div>
+    <section data-aos='fade-up' className='galery'>
+      <Slider {...settings}>
+        {galery.map(image => (
+          <div key={image.id} className='content_product'>
+            <img src={image.img_src} alt={image.img_alt} />
+          </div>
+        ))}
+      </Slider>
     </section>
   )
 }

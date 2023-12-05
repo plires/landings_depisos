@@ -2,7 +2,7 @@ import './linea-producto.css'
 
 const LineaProducto = ({ marca }) => {
   return (
-    <div data-aos='fade-right' className='content_lineas'>
+    <div data-aos='fade-up' className='content_lineas'>
       <div className='overlay'></div>
       <div className='marca'>
         <img

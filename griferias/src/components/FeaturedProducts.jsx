@@ -73,51 +73,47 @@ const FeaturedProducts = () => {
   }
 
   return (
-    <section className='featured_products container-fluid'>
-      <div data-aos='fade-up' className='row'>
-        <div className='col-sm-12'>
-          <h2>Nuestras griferías</h2>
-          {isPromo && (
-            <p className='promo title_promo'>
-              MODELOS EN PROMOCIÓN <br />
-              ¡SÓLO POR {getCurrentMonth()}!
-            </p>
-          )}
-          <Slider {...settings}>
-            {featuredProducts.map(product => (
-              <div key={product.id} className='container_product'>
-                <div className='content_product'>
-                  <div className='superior'>
-                    <p className='code'>{product.code}</p>
-                    {isPromo && (
-                      <img
-                        className='img-fluid img_logo_promo'
-                        src={product.promo_img_src}
-                        alt={product.promo_img_alt + ' ' + product.img_alt}
-                      />
-                    )}
-                  </div>
+    <section data-aos='fade-up' className='featured_products'>
+      <h2>Nuestras griferías</h2>
+      {isPromo && (
+        <p className='promo title_promo'>
+          MODELOS EN PROMOCIÓN <br />
+          ¡SÓLO POR {getCurrentMonth()}!
+        </p>
+      )}
+      <Slider {...settings}>
+        {featuredProducts.map(product => (
+          <div key={product.id} className='container_product'>
+            <div className='content_product'>
+              <div className='superior'>
+                <p className='code'>{product.code}</p>
+                {isPromo && (
                   <img
-                    className='img-fluid img_thumbnail'
-                    src={product.img_src}
-                    alt={product.img_alt}
+                    className='img-fluid img_logo_promo'
+                    src={product.promo_img_src}
+                    alt={product.promo_img_alt + ' ' + product.img_alt}
                   />
-                  <div className='inferior'>
-                    <p>{product.name}</p>
-                    <p>{product.brand}</p>
-                    <button
-                      className='btn'
-                      onClick={() => scrollToTop(product.name, product.code)}
-                    >
-                      Consultar
-                    </button>
-                  </div>
-                </div>
+                )}
               </div>
-            ))}
-          </Slider>
-        </div>
-      </div>
+              <img
+                className='img-fluid img_thumbnail'
+                src={product.img_src}
+                alt={product.img_alt}
+              />
+              <div className='inferior'>
+                <p>{product.name}</p>
+                <p>{product.brand}</p>
+                <button
+                  className='btn'
+                  onClick={() => scrollToTop(product.name, product.code)}
+                >
+                  Consultar
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </Slider>
     </section>
   )
 }

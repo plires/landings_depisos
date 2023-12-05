@@ -21,7 +21,7 @@ const ShowRoom = () => {
   return (
     <section className='showroom container-fluid'>
       <div data-aos='fade-up' className='row'>
-        <div className='content_showroom col-lg-10 p-0'>
+        <div className='content_showroom col-lg-10'>
           <div className='row'>
             <div className='col-lg-9 offset-lg-3 grouped'>
               <img
