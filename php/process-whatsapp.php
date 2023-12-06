@@ -28,11 +28,12 @@
   $app = new App();
 
   $whatsapp_enabled = $app->whatsappEnabled();
-  
+    
   if ( $whatsapp_enabled ) {
     
     try {
-      $whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro($require->rubro, EMAIL_VENTAS_GRIFERIAS);
+      $emails = $db->getRepositorioContacts()->getSalesEmails($require->rubro);
+      $whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro($require->rubro, $emails);
   
       $response_array['success'] = true;
       $response_array['data'] = $whatsapp;

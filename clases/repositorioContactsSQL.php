@@ -98,7 +98,9 @@ class RepositorioContactsSQL extends repositorioContacts
       case 'Griferias':
         $emails = EMAIL_VENTAS_GRIFERIAS;
         break;
-
+      case 'Cielorrasos Tetovinilico':
+        $emails = EMAIL_VENTAS_TETO;
+        break;
       default:
         $emails = EMAIL_DEFAULT;
         break;

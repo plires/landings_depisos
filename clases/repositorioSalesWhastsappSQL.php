@@ -40,6 +40,10 @@ class RepositorioSalesWhastsappSQL extends repositorioSalesWhastsapp
         return EMAIL_VENTAS_GRIFERIAS;
         break;
       
+      case 'Cielorrasos Tetovinilico':
+        return EMAIL_VENTAS_TETO;
+        break;
+      
       default:
         return EMAIL_VENTAS_PISOS;
         break;

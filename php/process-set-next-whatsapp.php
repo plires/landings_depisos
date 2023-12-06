@@ -19,6 +19,8 @@
   
   $db = new RepositorioSQL();
 
-  $whatsapp = $db->getRepositorioSalesWhastsapp()->setNextWhatsappNumberByRubro($require->rubro, EMAIL_VENTAS_GRIFERIAS);
+  $emails = $db->getRepositorioContacts()->getSalesEmails($require->rubro);
+  
+  $whatsapp = $db->getRepositorioSalesWhastsapp()->setNextWhatsappNumberByRubro($require->rubro, $emails);
   
 ?>

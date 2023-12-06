@@ -11,18 +11,12 @@ const Whatsapp = () => {
       const values = {
         rubro: currentRubro,
       }
-      const response = await axios.post(
+      await axios.post(
         import.meta.env.VITE_ROOT + '/php/process-set-next-whatsapp.php',
         values,
       )
-
-      if (response.data.success) {
-        // setWhatsapp(response.data.data)
-      } else {
-        // setWhatsappOpen(false)
-      }
     } catch (error) {
-      // setWhatsappOpen(false)
+      setWhatsappOpen(false)
     }
   }
 
