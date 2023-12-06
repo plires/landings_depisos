@@ -1,0 +1,35 @@
+.encastres {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.encastres .description {
+  border-top: solid 2px var(--primary-color);
+  border-bottom: solid 2px var(--primary-color);
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+  .encastres .description {
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 1400px) {
+}
+
+@media (min-width: 1600px) {
+}

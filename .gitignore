@@ -6,14 +6,19 @@
 /videos
 /img
 /dist
-/dist/
 /test.html
 **/.DS_Store into
 **/error_log
 */error_log
-*/img
+**/img
+**/fonts
 *.error_log
 .env
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.tiff
 ventas.inc.php
 */.env
 /griferias/node_modules

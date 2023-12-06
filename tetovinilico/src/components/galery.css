@@ -1,0 +1,16 @@
+.galery {
+  margin-bottom: 0;
+}
+
+.galery .slick-prev,
+.galery .slick-next {
+  z-index: 10;
+}
+
+.galery .slick-prev {
+  left: 1rem;
+}
+
+.galery .slick-next {
+  right: 1rem;
+}

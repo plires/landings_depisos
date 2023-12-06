@@ -1,0 +1,32 @@
+{
+  "ventajas": [
+    {
+      "id": 1,
+      "img_src": "icono-obra-rapida.gif",
+      "img_alt": "cielorrasos con obra rapida",
+      "title": "OBRA RÁPIDA <br />Y LIMPIA",
+      "description": "Sabemos que tu tiempo es importante, con Teto Vinílico renovar nunca había sido tan fácil."
+    },
+    {
+      "id": 2,
+      "img_src": "icono-libre-mantenimiento.gif",
+      "img_alt": "cielorrasos con libre mantenimiento",
+      "title": "LIBRE DE <br />MANTENIMIENTO  ",
+      "description": "Diseñado con materiales duraderos para que no tengas que realizar mantenciones periódicas."
+    },
+    {
+      "id": 3,
+      "img_src": "icono-sustentables.gif",
+      "img_alt": "cielorrasos sustentables para el medio ambiente",
+      "title": "PRODUCTO <br />SUSTENTABLE",
+      "description": "Hecho con materiales sustentables que preservan nuestro medio ambiente."
+    },
+    {
+      "id": 4,
+      "img_src": "icono-liviano.gif",
+      "img_alt": "cielorrasos livianos y faciles de trasladar",
+      "title": "SÚPER <br />LIVIANO",
+      "description": "Facilita el transporte, instalación y reduce los costos en la estructura de soporte."
+    }
+  ]
+}

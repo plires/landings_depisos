@@ -1,0 +1,40 @@
+{
+  "featuredProducts": [
+    {
+      "id": 1,
+      "img_src": "tauri.jpg",
+      "img_alt": "tetovinilico tauri",
+      "brand": "Teto Vinílico Argentina",
+      "color": "Tauari",
+      "line": "Línea Origens",
+      "measures": "11 x 200 x 5800mm"
+    },
+    {
+      "id": 2,
+      "img_src": "carvalho.jpg",
+      "img_alt": "tetovinilico carvalho",
+      "brand": "Teto Vinílico Argentina",
+      "color": "Carvalho",
+      "line": "Línea Origens",
+      "measures": "11 x 200 x 5800mm"
+    },
+    {
+      "id": 3,
+      "img_src": "bege.jpg",
+      "img_alt": "tetovinilico bege",
+      "brand": "Teto Vinílico Argentina",
+      "color": "Bege",
+      "line": "Línea Origens",
+      "measures": "11 x 200 x 5800mm"
+    },
+    {
+      "id": 4,
+      "img_src": "castanho.jpg",
+      "img_alt": "tetovinilico castanho",
+      "brand": "Teto Vinílico Argentina",
+      "color": "Castanho",
+      "line": "Línea Origens",
+      "measures": "11 x 200 x 5800mm"
+    }
+  ]
+}

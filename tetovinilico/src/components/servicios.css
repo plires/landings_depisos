@@ -1,0 +1,95 @@
+.content {
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+}
+
+.content .Typewriter {
+  margin-bottom: 0;
+  font-size: 1.25rem;
+}
+
+.content img {
+  margin-right: 10px;
+  animation: tildeAnimation 2s linear infinite;
+  -webkit-animation: tildeAnimation 2s linear infinite;
+}
+
+@keyframes tildeAnimation {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(15deg);
+    -webkit-transform: rotate(15deg);
+    -moz-transform: rotate(15deg);
+    -ms-transform: rotate(15deg);
+    -o-transform: rotate(15deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+  }
+
+  75% {
+    transform: rotate(-25deg);
+    -webkit-transform: rotate(-25deg);
+    -moz-transform: rotate(-25deg);
+    -ms-transform: rotate(-25deg);
+    -o-transform: rotate(-25deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+  }
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .content img {
+    margin: 0;
+  }
+
+  .content .Typewriter {
+    margin-top: 10px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+  .content .Typewriter {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 1400px) {
+}
+
+@media (min-width: 1600px) {
+  .content .Typewriter {
+    font-size: 2rem;
+  }
+}
