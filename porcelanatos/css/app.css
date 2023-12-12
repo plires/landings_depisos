@@ -80,6 +80,11 @@ header div {
   background-repeat: no-repeat;
   background-position: 18% -95%;
 }
+
+.imagen_tendenza {
+  background: url("../img/tendenza/porcelanico-tendenza-slide.jpg");
+}
+
 .imagen_destacada .mejores_marcas {
   display: none;
 }
@@ -435,6 +440,29 @@ footer .libre:hover {
 }
 /* Faja Vite end */
 
+/* Faja Tendenza */
+.faja_tendenza .intro_tendenza {
+  color: var(--dark-color);
+}
+
+.faja_tendenza .imgs img {
+  margin-bottom: 30px !important;
+}
+
+.faja_tendenza .extras .content img {
+  max-width: 15%;
+}
+
+.faja_tendenza .extras .precio {
+  color: var(--dark-color);
+  font-size: 1.25rem;
+}
+
+.faja_tendenza .extras .parrafo_final {
+  color: var(--dark-color);
+}
+/* Faja Tendenza end */
+
 /* MEDIA QUERIS */
 
 @media (min-width: 576px) {
@@ -509,6 +537,44 @@ footer .libre:hover {
     background: var(--dark-color) !important;
   }
   /* Varios end */
+
+  /* Faja Tendenza */
+  .faja_vite h2 {
+    font-size: 1.5rem;
+  }
+
+  .faja_tendenza .extras .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .faja_tendenza .extras .content img {
+    max-width: 8%;
+    margin-right: 20px;
+  }
+
+  .faja_tendenza .extras .content p {
+    margin-bottom: 0;
+  }
+
+  .faja_tendenza .extras .content .precio {
+    position: relative;
+    font-weight: 700;
+    padding-left: 20px;
+  }
+
+  .faja_tendenza .extras .content .precio::before {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: var(--primary-color);
+  }
+  /* Faja Tendenza end */
 }
 
 @media (min-width: 768px) {
@@ -714,6 +780,20 @@ footer .libre:hover {
     font-size: 1.5rem;
   }
   /* Faja Vite end */
+
+  /* Faja Tendenza end */
+  .faja_tendenza .intro_tendenza {
+    font-size: 1.25rem;
+  }
+
+  .faja_tendenza .extras .content .precio {
+    font-size: 2rem;
+  }
+
+  .faja_tendenza .extras .parrafo_final {
+    font-size: 1.25rem;
+  }
+  /* Faja Tendenza end */
 }
 
 @media (min-width: 1200px) {
