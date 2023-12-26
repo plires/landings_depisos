@@ -189,6 +189,7 @@ export default function Formulario() {
                           checked={isSubscribed}
                           type='checkbox'
                           name='newsletter'
+                          id='newsletter'
                         />
                         <label
                           className='form-check-label'
