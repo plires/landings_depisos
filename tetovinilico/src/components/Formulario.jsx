@@ -63,10 +63,28 @@ export default function Formulario() {
     values.interest_number = import.meta.env.VITE_INTEREST_NUMBER // numero del interes tal cual figura en Perfit
     const urlParams = new URLSearchParams(window.location.search)
 
+    if (urlParams.has('utm_source')) {
+      values.utm_source = urlParams.get('utm_source')
+    } else {
+      values.utm_source = 'No Set'
+    }
+
     if (urlParams.has('utm_medium')) {
       values.utm_medium = urlParams.get('utm_medium')
     } else {
       values.utm_medium = 'No Set'
+    }
+
+    if (urlParams.has('utm_campaign')) {
+      values.utm_campaign = urlParams.get('utm_campaign')
+    } else {
+      values.utm_campaign = 'No Set'
+    }
+
+    if (urlParams.has('utm_content')) {
+      values.utm_content = urlParams.get('utm_content')
+    } else {
+      values.utm_content = 'No Set'
     }
 
     try {
