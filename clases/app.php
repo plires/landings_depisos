@@ -116,7 +116,7 @@ use PHPMailer\PHPMailer\Exception;
             [
               [
                 'id' => 10, 
-                'value' => $post['utm_medium']
+                'value' => $post['utm_source']
               ],
               [
                 'id' => 12, 
