@@ -136,7 +136,7 @@ class RepositorioContactsSQL extends repositorioContacts
       }
 
       // si el array sigue vacio quiere decir que el vendedor asignado a este usuario ya no se encuentra en el array actual de ventas para este rubro
-      if ( empty($emailTo)) { 
+      if ( empty($emailTo) ) { 
         $emailTo = $salesEmails[0]; // con lo cual, simplemente asignamos el primer vendedor disponible del array actual
       }
 
@@ -168,7 +168,7 @@ class RepositorioContactsSQL extends repositorioContacts
 
     }
 
-    if (!isset($emailTo)) { // si el ultimo registro no contiene un mail que figure dentro del array $salesEmails
+    if ( empty($emailTo) ) { // si el ultimo registro no contiene un mail que figure dentro del array $salesEmails
       $emailTo = $salesEmails[0]; // Asigno el primero de todos
     }
 
