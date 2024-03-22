@@ -126,15 +126,15 @@
 			<div class="row wow fadeInUp">
 				<div class="col-md-4">
 					<img class="img-fluid" src="img/linea-siding.jpg" alt="revestimiento de pared siding">
-					<h3>SIDING</h3>
+					<h3>SIDING WPC</h3>
 				</div>
 				<div class="col-md-4">
 					<img class="img-fluid" src="img/linea-wall-panel.jpg" alt="revestimiento de pared wall panel">
-					<h3>WALL PANEL</h3>
+					<h3>WALL PANEL WPC</h3>
 				</div>
 				<div class="col-md-4">
 					<img class="img-fluid" src="img/linea-perfiles.jpg" alt="revestimiento de pared perfiles">
-					<h3>PERFILES</h3>
+					<h3>PERFILES / LISTONES WPC</h3>
 				</div>
 			</div>
 
@@ -219,6 +219,10 @@
 							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 2">
 							<p>Terminación perfecta</p>
 						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 2">
+							<p>Revestimiento wall panel</p>
+						</li>
 					</ul>
 				</div>
 
@@ -230,7 +234,11 @@
 						</li>
 						<li>
 							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 4">
-							<p>Colores naturales</p>
+							<p>Colores naturales simil madera</p>
+						</li>
+						<li>
+							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 4">
+							<p>Revestimiento exterior siding</p>
 						</li>
 					</ul>
 				</div>
@@ -266,7 +274,7 @@
 					<div class="col-md-10 offset-md-1 wow fadeInUp">
 						<h2><span>REVESTIMIENTOS:</span> APLICACIONES RECOMENDADAS</h2>
 						<p>
-							Ideal para renovar o resaltar fachadas, muros y grandes superficies. <br>Tambien utilizados en interiores otorgando un efecto único y dependiendo del diseño seleccionado, pueden cambiar por completo un ambiente <span>Solución rápida y ecológica.</span>
+							Ideal para renovar o resaltar fachadas, muros y grandes superficies. <br>Tambien utilizados en interiores otorgando un efecto único y dependiendo del diseño seleccionado, pueden cambiar por completo un ambiente <span>Solución rápida y ecológica.</span> Material WPC superior al PVC.
 						</p>
 						<p class="dudas">¿TENÉS DUDAS O CONSULTAS?</p>
 						<a href="#formulario" class="btn btn-primary transition btn_to_form">CONTACTANOS</a>
