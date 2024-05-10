@@ -18,27 +18,27 @@
 <!DOCTYPE html>
 <html lang="es">
 
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="description" content="Linea de cerámicos para pisos. Primeras y segundas marcas.">
-		<meta name="author" content="Librecomunicacion">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Linea de cerámicos para pisos. Primeras y segundas marcas.">
+  <meta name="author" content="Librecomunicacion">
 
-	  <!-- Favicons -->
-	  <?php include('./../includes/favicon.inc.php'); ?>
-	  
-		<title>Cerámicos de primera y segunda | Depisos.com</title>
-		<link rel="stylesheet" href="./css/app.css">
+  <!-- Favicons -->
+  <?php include('./../includes/favicon.inc.php'); ?>
 
-		<?php include('./../includes/tag_manager_head.php') ?>
-	</head>
+  <title>Cerámicos de primera y segunda | Depisos.com</title>
+  <link rel="stylesheet" href="./css/app.css">
 
-	<body>
-		<?php include('./../includes/tag_manager_body.php') ?>
+  <?php include('./../includes/tag_manager_head.php') ?>
+</head>
 
-		<!-- WhatsApp -->
-	  <?php
+<body>
+  <?php include('./../includes/tag_manager_body.php') ?>
+
+  <!-- WhatsApp -->
+  <?php
 
 	  	$whatsapp_enabled = $app->whatsappEnabled();
 			
@@ -57,198 +57,208 @@
 
 		?>
 
-		<!-- Header -->
-		<?php include_once( __DIR__ . '/../includes/header.php' );  ?>
-		
-		<!-- Imagen Destacada -->
-		<section class="container-fluid imagen_destacada">
+  <!-- Header -->
+  <?php include_once( __DIR__ . '/../includes/header.php' );  ?>
 
-			<!-- Mejores Marcas -->
-			<div class="mejores_marcas wow fadeInRight">
-				<img class="img-fluid" src="img/marcas.png" alt="mejores marcas porcelanatos">
-				<div>
-					<p>las <span>mejores</span> <br> marcas del <br> mercado</p>
-				</div>
-			</div>
-			<!-- Mejores Marcas end -->
+  <!-- Imagen Destacada -->
+  <section class="container-fluid imagen_destacada">
 
-			<!-- Informacion -->
-			<div class="container">
-				<div class="row">
+    <!-- Mejores Marcas -->
+    <div class="mejores_marcas wow fadeInRight">
+      <img class="img-fluid" src="img/marcas.png" alt="mejores marcas porcelanatos">
+      <div>
+        <p>las <span>mejores</span> <br> marcas del <br> mercado</p>
+      </div>
+    </div>
+    <!-- Mejores Marcas end -->
 
-					<div class="col-md-12">
-						<h1 class="wow fadeInDown">CERÁMICOS</h1>
+    <!-- Informacion -->
+    <div class="container">
+      <div class="row">
 
-						<p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p>
-						<p class="wow fadeInLeft cuotas">
-							Comprá tus pisos en hasta 18 cuotas <br>
-							<span>Comunicate con nosotros y conocé más detalles</span>
-						</p>
+        <div class="col-md-12">
+          <h1 class="wow fadeInDown">CERÁMICOS</h1>
 
-						<!-- Formulario -->
-						<form id="formulario" method="post" class="needs-validation wow fadeInUp" novalidate>
+          <img class="img-fluid" src="./../img/super-hot.png" alt="promo">
 
-							<?php include_once( __DIR__ . '/../includes/hidden-inputs.php' ); ?>
+          <p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p>
+          <p class="wow fadeInLeft cuotas">
+            Comprá tus pisos en hasta 18 cuotas <br>
+            <span>Comunicate con nosotros y conocé más detalles</span>
+          </p>
 
-							<?php include_once( __DIR__ . '/../includes/errors.php' ); ?>
+          <!-- Formulario -->
+          <form id="formulario" method="post" class="needs-validation wow fadeInUp" novalidate>
 
-							<p class="leyenda_presupuesta">Presupuestá Ahora!</p>
+            <?php include_once( __DIR__ . '/../includes/hidden-inputs.php' ); ?>
 
-							<?php include_once( __DIR__ . '/../includes/input-name.php' ); ?>
-							<?php include_once( __DIR__ . '/../includes/input-email.php' ); ?>
-							<?php include_once( __DIR__ . '/../includes/input-phone.php' ); ?>
-							<?php include_once( __DIR__ . '/../includes/input-comments.php' ); ?>
-							<?php include_once( __DIR__ . '/../includes/input-recaptcha.php' ); ?>
-							<?php include_once( __DIR__ . '/../includes/input-newsletter.php' ); ?>
-							<?php include_once( __DIR__ . '/../includes/input-submit.php' ); ?>
+            <?php include_once( __DIR__ . '/../includes/errors.php' ); ?>
 
-						</form>
-						<!-- Formulario end -->
+            <p class="leyenda_presupuesta">Presupuestá Ahora!</p>
 
-					</div>
+            <?php include_once( __DIR__ . '/../includes/input-name.php' ); ?>
+            <?php include_once( __DIR__ . '/../includes/input-email.php' ); ?>
+            <?php include_once( __DIR__ . '/../includes/input-phone.php' ); ?>
+            <?php include_once( __DIR__ . '/../includes/input-comments.php' ); ?>
+            <?php include_once( __DIR__ . '/../includes/input-recaptcha.php' ); ?>
+            <?php include_once( __DIR__ . '/../includes/input-newsletter.php' ); ?>
+            <?php include_once( __DIR__ . '/../includes/input-submit.php' ); ?>
 
-				</div>
-			</div>
-			<!-- Informacion end -->
+          </form>
+          <!-- Formulario end -->
 
-		</section>
-		<!-- Imagen Destacada -->
+        </div>
 
-		<!-- Galeria -->
-		<?php include_once( __DIR__ . '/../includes/galeria-ceramicos.inc.php' );  ?>
+      </div>
+    </div>
+    <!-- Informacion end -->
 
-		<!-- Faja Naranja -->
-		<section class="container-fluid faja_naranja">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-10 m-auto col-lg-12">
-						<p class="wow fadeInUp">
-							<strong>Depisos.com</strong> en cerámicos te ofrecemos la variedad más amplia de texturas y colores del mercado y las mejores marcas para crear los ambientes <strong>MÁS AGRADABLES.</strong><br>
-							Trabajamos con Cerámicos de primera y segunda calidad.
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Faja Naranja end -->
+  </section>
+  <!-- Imagen Destacada -->
 
-		<!-- Líneas -->
-		<section class="container lineas">
-			
-			<div class="row">
-				<div class="col-md-12 wow fadeInUp">
-					<h2>LÍNEA COMPLETA <span>CERRO NEGRO</span></h2>
-				</div>
-			</div>
+  <!-- Galeria -->
+  <?php include_once( __DIR__ . '/../includes/galeria-ceramicos.inc.php' );  ?>
 
-			<div class="row wow fadeInUp">
+  <!-- Faja Naranja -->
+  <section class="container-fluid faja_naranja">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 m-auto col-lg-12">
+          <p class="wow fadeInUp">
+            <strong>Depisos.com</strong> en cerámicos te ofrecemos la variedad más amplia de texturas y colores del
+            mercado y las mejores marcas para crear los ambientes <strong>MÁS AGRADABLES.</strong><br>
+            Trabajamos con Cerámicos de primera y segunda calidad.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Faja Naranja end -->
 
-				<div class="col-md-6">
-					<img class="img-fluid" src="img/ceramicos-cerro-negro-a.jpg" alt="ceramicos de primera y segunda calidad. las mejores marcas importadas -a">
-				</div>
-				<div class="col-md-6">
-					<img class="img-fluid" src="img/ceramicos-cerro-negro-b.jpg" alt="ceramicos de primera y segunda calidad. las mejores marcas importadas -b">
-				</div>
-				<div class="col-md-6">
-					<img class="img-fluid" src="img/ceramicos-cerro-negro-c.jpg" alt="ceramicos de primera y segunda calidad. las mejores marcas importadas -c">
-				</div>
-				<div class="col-md-6">
-					<img class="img-fluid" src="img/ceramicos-cerro-negro-d.jpg" alt="ceramicos de primera y segunda calidad. las mejores marcas importadas -d">
-				</div>
-				
-			</div>
+  <!-- Líneas -->
+  <section class="container lineas">
 
-		</section>
-		<!-- Líneas end -->
+    <div class="row">
+      <div class="col-md-12 wow fadeInUp">
+        <h2>LÍNEA COMPLETA <span>CERRO NEGRO</span></h2>
+      </div>
+    </div>
 
-		<!-- Varios -->
-		<section class="container varios">
+    <div class="row wow fadeInUp">
 
-			<div class="row">
-				<div class="col-md-10 offset-md-1">
-					<div class="visita wow fadeInUp">
-						<p>
-							visitá nuestro <span>SHOWROOM</span>
-							<a href="#formulario" class="btn btn-primary transition btn_to_form">SOLICITÁ UNA VISITA</a>
-						</p>
-					</div>
-				</div>
-			</div>
+      <div class="col-md-6">
+        <img class="img-fluid" src="img/ceramicos-cerro-negro-a.jpg"
+          alt="ceramicos de primera y segunda calidad. las mejores marcas importadas -a">
+      </div>
+      <div class="col-md-6">
+        <img class="img-fluid" src="img/ceramicos-cerro-negro-b.jpg"
+          alt="ceramicos de primera y segunda calidad. las mejores marcas importadas -b">
+      </div>
+      <div class="col-md-6">
+        <img class="img-fluid" src="img/ceramicos-cerro-negro-c.jpg"
+          alt="ceramicos de primera y segunda calidad. las mejores marcas importadas -c">
+      </div>
+      <div class="col-md-6">
+        <img class="img-fluid" src="img/ceramicos-cerro-negro-d.jpg"
+          alt="ceramicos de primera y segunda calidad. las mejores marcas importadas -d">
+      </div>
 
-			<div class="row caracteristicas wow fadeInUp">
+    </div>
 
-				<div class="col-md-6">
-					<ul>
-						<li>
-							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 1">
-							<p>Rápida instalación</p>
-						</li>
-						<li>
-							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 2">
-							<p>Fácil limpieza</p>
-						</li>
-					</ul>
-				</div>
+  </section>
+  <!-- Líneas end -->
 
-				<div class="col-md-6">
-					<ul>
-						<li>
-							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 3">
-							<p>Alta durabilidad</p>
-						</li>
-						<li>
-							<img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 4">
-							<p>Variedad de colores</p>
-						</li>
-					</ul>
-				</div>
+  <!-- Varios -->
+  <section class="container varios">
 
-			</div>
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <div class="visita wow fadeInUp">
+          <p>
+            visitá nuestro <span>SHOWROOM</span>
+            <a href="#formulario" class="btn btn-primary transition btn_to_form">SOLICITÁ UNA VISITA</a>
+          </p>
+        </div>
+      </div>
+    </div>
 
-			<div class="row beneficios">
+    <div class="row caracteristicas wow fadeInUp">
 
-				<div class="col-4 wow fadeInLeft">
-					<img class="img-fluid" src="img/presupuesto-sin-cargo.png" alt="pisos porcelanatos presupuestos sin cargo">
-					<p>Presupuestos Sin cargo</p>
-				</div>
+      <div class="col-md-6">
+        <ul>
+          <li>
+            <img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 1">
+            <p>Rápida instalación</p>
+          </li>
+          <li>
+            <img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 2">
+            <p>Fácil limpieza</p>
+          </li>
+        </ul>
+      </div>
 
-				<div data-wow-delay="0.3s" class="col-4 wow fadeInLeft">
-					<img class="img-fluid" src="img/cuotas-fijas.png" alt="pisos porcelanatos Cuotas fijas en pesos">
-					<p>Ahora 12 Cuotas fijas en pesos</p>
-				</div>
+      <div class="col-md-6">
+        <ul>
+          <li>
+            <img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 3">
+            <p>Alta durabilidad</p>
+          </li>
+          <li>
+            <img class="img-fluid" src="img/tilde.png" alt="porcelanatos tilde 4">
+            <p>Variedad de colores</p>
+          </li>
+        </ul>
+      </div>
 
-				<div data-wow-delay="0.6s" class="col-4 wow fadeInLeft">
-					<img class="img-fluid" src="img/importadores-directos.png" alt="pisos porcelanatos Importadores Directos">
-					<p>Importadores Directos</p>
-				</div>
+    </div>
 
-			</div>
+    <div class="row beneficios">
 
-		</section>
-		<!-- Varios end -->
+      <div class="col-4 wow fadeInLeft">
+        <img class="img-fluid" src="img/presupuesto-sin-cargo.png" alt="pisos porcelanatos presupuestos sin cargo">
+        <p>Presupuestos Sin cargo</p>
+      </div>
 
-		<!-- Aplicaciones -->
-		<section class="container-fluid aplicaciones">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-10 offset-md-1 wow fadeInUp">
-						<h2><span>CERÁMICOS:</span> APLICACIONES RECOMENDADAS</h2>
-						<p>
-							Colocado en baños, cocinas, salas, tiendas y muchos otros sitios los cerámicos son la opción ideal por su relación costo-beneficio. Crean ambientes de alta calidad y gran resistencia. <br> <strong>Aptos para alto tránsito.</strong>
-						</p>
-						<p class="dudas">¿TENÉS DUDAS O CONSULTAS?</p>
-						<a href="#formulario" class="btn btn-primary transition btn_to_form">CONTACTANOS</a>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Aplicaciones end -->
+      <div data-wow-delay="0.3s" class="col-4 wow fadeInLeft">
+        <img class="img-fluid" src="img/cuotas-fijas.png" alt="pisos porcelanatos Cuotas fijas en pesos">
+        <p>Ahora 12 Cuotas fijas en pesos</p>
+      </div>
 
-		<!-- Footer -->
-		<?php include_once( __DIR__ . '/../includes/footer.php' );  ?>
+      <div data-wow-delay="0.6s" class="col-4 wow fadeInLeft">
+        <img class="img-fluid" src="img/importadores-directos.png" alt="pisos porcelanatos Importadores Directos">
+        <p>Importadores Directos</p>
+      </div>
 
-		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-		<script src="./../dist/main.js"></script>
+    </div>
 
-	</body>
+  </section>
+  <!-- Varios end -->
+
+  <!-- Aplicaciones -->
+  <section class="container-fluid aplicaciones">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 offset-md-1 wow fadeInUp">
+          <h2><span>CERÁMICOS:</span> APLICACIONES RECOMENDADAS</h2>
+          <p>
+            Colocado en baños, cocinas, salas, tiendas y muchos otros sitios los cerámicos son la opción ideal por su
+            relación costo-beneficio. Crean ambientes de alta calidad y gran resistencia. <br> <strong>Aptos para alto
+              tránsito.</strong>
+          </p>
+          <p class="dudas">¿TENÉS DUDAS O CONSULTAS?</p>
+          <a href="#formulario" class="btn btn-primary transition btn_to_form">CONTACTANOS</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Aplicaciones end -->
+
+  <!-- Footer -->
+  <?php include_once( __DIR__ . '/../includes/footer.php' );  ?>
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="./../dist/main.js"></script>
+
+</body>
+
 </html>
