@@ -81,9 +81,9 @@
 
           <img class="img-fluid" src="./../img/super-hot.png" alt="promo">
 
-          <p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p>
+          <!-- <p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p> -->
           <p class="wow fadeInLeft cuotas">
-            Comprá tus pisos en hasta 18 cuotas <br>
+            Comprá tus revestimientos al mejor precio <br>
             <span>Comunicate con nosotros y conocé más detalles</span>
           </p>
 
@@ -253,17 +253,17 @@
 
     <div class="row beneficios">
 
-      <div class="col-4 wow fadeInLeft">
+      <div class="col-6 wow fadeInLeft">
         <img class="img-fluid" src="img/presupuesto-sin-cargo.png" alt="pisos porcelanatos presupuestos sin cargo">
         <p>Presupuestos Sin cargo</p>
       </div>
 
-      <div data-wow-delay="0.3s" class="col-4 wow fadeInLeft">
+      <!-- <div data-wow-delay="0.3s" class="col-4 wow fadeInLeft">
         <img class="img-fluid" src="img/cuotas-fijas.png" alt="pisos porcelanatos Cuotas fijas en pesos">
         <p>Ahora 12 Cuotas fijas en pesos</p>
-      </div>
+      </div> -->
 
-      <div data-wow-delay="0.6s" class="col-4 wow fadeInLeft">
+      <div data-wow-delay="0.6s" class="col-6 wow fadeInLeft">
         <img class="img-fluid" src="img/importadores-directos.png" alt="pisos porcelanatos Importadores Directos">
         <p>Importadores Directos</p>
       </div>
