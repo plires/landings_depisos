@@ -79,8 +79,6 @@
         <div class="col-md-12">
           <h1 class="wow fadeInDown">CERÁMICOS</h1>
 
-          <img class="img-fluid" src="./../img/super-hot.png" alt="promo">
-
           <!-- <p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p> -->
           <p class="wow fadeInLeft cuotas">
             Comprá tus pisos en al mejor precio <br>

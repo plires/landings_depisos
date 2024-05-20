@@ -79,8 +79,6 @@
         <div class="col-md-12">
           <h1 class="wow fadeInDown">REVESTIMIENTOS<br><span>INTERIOR/EXTERIOR</span></h1>
 
-          <img class="img-fluid" src="./../img/super-hot.png" alt="promo">
-
           <!-- <p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p> -->
           <p class="wow fadeInLeft cuotas">
             Comprá tus revestimientos al mejor precio <br>
