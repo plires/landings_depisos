@@ -2,10 +2,9 @@
 	// Envio del formulario de contacto
 	if (isset($_POST["send"])) {
 			  
-	  // include_once( __DIR__ . '/../php/recaptcha.php' );
+	  include_once( __DIR__ . '/../php/recaptcha.php' );
 	  
-			if (true) {
-				// if ($responseKeys['success']) {
+		if ($responseKeys['success']) {
 
 	  	include_once( __DIR__ . '/../includes/handle-form-validation.php' );
 	  
