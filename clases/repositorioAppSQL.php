@@ -101,7 +101,7 @@ class RepositorioAppSQL extends repositorioApp
   public function whatsappEnabled()
   {
 
-    return date('l') != 'Sunday' && date('l') != 'Saturday' && intval(date('H')) > 8 && intval(date('H')) < 19;
+    return date('l') != 'Sunday' && date('l') != 'Saturday' && intval(date('H')) > 8 && intval(date('H')) < 18;
   }
 
   public function registerEmailContactsInPerfit($api, $list, $interest, $post, $emailTo)
