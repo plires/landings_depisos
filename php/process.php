@@ -11,7 +11,6 @@
   }
   
   require_once( __DIR__ . '/../vendor/autoload.php' );
-  require_once( __DIR__ . '/../clases/app.php' );
   include_once( __DIR__ . '/../clases/repositorioSQL.php' );
     
   $response_array = [
@@ -22,17 +21,15 @@
 
   
   $require = json_decode(file_get_contents('php://input'));
-  
+
   $dotenv = Dotenv\Dotenv::createImmutable( __DIR__ . '/../' );
   $dotenv->safeLoad();
   
   $db = new RepositorioSQL();
-  $app = new App();
-
   
-  $recaptcha = $app->verifyRecaptcha($require->recaptchaToken); // obtiene resultado de la verificacion recaptcha
+  $recaptcha = $db->getRepositorioApp()->verifyRecaptcha($require->recaptchaToken); // obtiene resultado de la verificacion recaptcha
   
-  $errors_form = $app->validateForm($recaptcha, $require); // obtiene errores de la validacion de formulario
+  $errors_form = $db->getRepositorioApp()->validateForm($recaptcha, $require); // obtiene errores de la validacion de formulario
   
   if (count($errors_form) > 0) {
     $response_array['errors'] = $errors_form;
@@ -45,11 +42,11 @@
     $emailTo = $db->getRepositorioContacts()->saveInBDD($require);
     
     // Registramos en Perfit el contacto
-    $app->registerEmailContactsInPerfit($_ENV['PERFIT_APY_KEY'], $_ENV['PERFIT_LIST'], (int)$require->interest_number, $require, $emailTo);
+    $db->getRepositorioApp()->registerEmailContactsInPerfit($_ENV['PERFIT_APY_KEY'], $_ENV['PERFIT_LIST'], (int)$require->interest_number, $require, $emailTo);
     
     // Enviamos los correos al usuario y al administrador del sitio
-    $sendClient = $app->sendEmail('Cliente', 'Contacto Cliente', $require, $emailTo);
-    $sendUser = $app->sendEmail('Usuario', 'Contacto Usuario', $require, $emailTo);
+    $sendClient = $db->getRepositorioApp()->sendEmail('Cliente', 'Contacto Cliente', $require, $emailTo);
+    $sendUser = $db->getRepositorioApp()->sendEmail('Usuario', 'Contacto Usuario', $require, $emailTo);
     
     if ($sendClient && $sendUser) {
 
@@ -62,15 +59,16 @@
       echo json_encode($response_array);exit;
 
     } else {
-      array_push($response_array['errors'], 'Ocurrió un error al enviar la consulta, por favor intente nuevamente o si prefiere contacte a ' . $emailTo[0]);
+      array_push($response_array['errors'], 'Ocurrió un error al enviar la consulta, por favor intente nuevamente o si prefiere contacte a ' . $emailTo['email']);
 
       echo json_encode($response_array);exit;
       
     }
     
   } catch (\Throwable $th) {
+    echo"<pre>";var_dump($th);exit;
     
-    array_push($response_array['errors'], 'Ocurrió un error al enviar la consulta, por favor intente nuevamente o si prefiere contacte a ' . $emailTo[0]);
+    array_push($response_array['errors'], 'Ocurrió un error al enviar la consulta, por favor intente nuevamente o si prefiere contacte a ' . $emailTo['email']);
  
     echo json_encode($response_array);exit;
 

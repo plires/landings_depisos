@@ -5,47 +5,37 @@ import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import ErrorInput from './ErrorInput'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
+import Loader from './Loader'
+import { validation, getStores } from './../utils/dataUtils'
 import 'react-toastify/dist/ReactToastify.css'
 
 import './formulario.css'
 
 export default function Formulario() {
   const [loading, setLoading] = useState(false)
-  const { executeRecaptcha } = useGoogleReCaptcha()
+  const [wordBtn, setWordBtn] = useState('ENVIAR')
+  const [stores, setStores] = useState(false)
   const [isSubscribed, setIsSubscribed] = useState(true)
+  const { executeRecaptcha } = useGoogleReCaptcha()
   const { message, setMessage } = useContext(StoreContext)
 
   const ref = useRef()
-
-  useEffect(() => {
-    ref.current.setFieldValue('comments', message)
-  }, [message])
 
   const handleChange = event => {
     setIsSubscribed(event.target.checked)
   }
 
-  const validation = values => {
-    const errors = {}
-    if (!values.name) {
-      errors.name = 'Ingresá un nombre'
-    }
-    if (!values.email) {
-      errors.email = 'Ingresá tu email'
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = 'Ingresá un correo válido'
-    }
-    if (!values.phone) {
-      errors.phone = 'Ingresá un teléfono'
-    }
-    if (!values.comments) {
-      errors.comments = 'Enviá tu consulta'
-    }
-    return errors
-  }
+  useEffect(() => {
+    ref.current.setFieldValue('comments', message)
+  }, [message])
+
+  useEffect(() => {
+    getStores(setLoading, axios, setStores, toast)
+  }, [])
 
   const sendForm = async (values, { setSubmitting, resetForm }) => {
     setLoading(true)
+    setWordBtn('ENVIANDO...')
 
     const token = await executeRecaptcha('form_contacto')
     values.recaptchaToken = token
@@ -53,7 +43,6 @@ export default function Formulario() {
     if (isSubscribed) {
       values.newsletter = 'on'
     } else {
-      console.log('entra')
       delete values.newsletter
     }
 
@@ -103,8 +92,6 @@ export default function Formulario() {
           formLocation: 'form_griferias',
           event: 'send_form_griferias',
         })
-        resetForm()
-        setMessage('')
       } else {
         responseData.errors.map(error => {
           return toast.error(error)
@@ -117,122 +104,161 @@ export default function Formulario() {
       )
     }
 
+    resetForm()
+    setMessage('')
     setSubmitting(false)
     setLoading(false)
+    setWordBtn('ENVIAR')
   }
 
   const initFormDefault = {
     name: '',
     email: '',
     phone: '',
+    store: false,
     comments: message,
     newsletter: true,
   }
 
   return (
-    <section className='container formulario'>
-      <div className='row'>
-        <div className='col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 content_form'>
-          {loading && <div>Loading component</div>}
+    <>
+      {loading && <Loader />}
+      <section className='container formulario'>
+        <div className='row'>
+          <div className='col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 content_form'>
+            <ToastContainer />
 
-          <ToastContainer />
-
-          <div className='row'>
-            <div id='formulario' className='col-md-12'>
-              <Formik
-                innerRef={ref}
-                initialValues={initFormDefault}
-                validate={validation}
-                onSubmit={sendForm}
-              >
-                {({ handleSubmit, isSubmitting }) => (
-                  <Form
-                    data-aos='fade-up'
-                    id='form_contacto'
-                    onSubmit={handleSubmit}
-                  >
-                    <h2>¡Cotizar ahora!</h2>
-                    <h5>
-                      Cotizaciones sin cargo, consulta por descuentos
-                      disponibles este mes.
-                    </h5>
-
-                    <div className='form-group'>
-                      <Field
-                        className='form-control'
-                        type='text'
-                        name='name'
-                        placeholder='Nombre'
-                      />
-                      <ErrorMessage name='name' component={ErrorInput} />
-                    </div>
-
-                    <div className='form-group'>
-                      <Field
-                        className='form-control'
-                        type='email'
-                        name='email'
-                        placeholder='Email'
-                      />
-                      <ErrorMessage name='email' component={ErrorInput} />
-                    </div>
-
-                    <div className='form-group'>
-                      <Field
-                        className='form-control'
-                        type='number'
-                        name='phone'
-                        placeholder='Teléfono'
-                      />
-                      <ErrorMessage name='phone' component={ErrorInput} />
-                    </div>
-
-                    <div className='form-group'>
-                      <Field
-                        className='form-control'
-                        as='textarea'
-                        name='comments'
-                        rows='4'
-                        placeholder='Que necesitás?'
-                        value={message}
-                        onChange={event => setMessage(event.target.value)}
-                      />
-                      <ErrorMessage name='comments' component={ErrorInput} />
-                    </div>
-
-                    <div className='form-group form-check'>
-                      <label>
-                        <Field
-                          onChange={handleChange}
-                          checked={isSubscribed}
-                          type='checkbox'
-                          name='newsletter'
-                          id='newsletter'
-                        />
-                        <label
-                          className='form-check-label'
-                          htmlFor='newsletter'
-                        >
-                          Suscribir newsletter
-                        </label>
-                      </label>
-                    </div>
-
-                    <button
-                      id='send'
-                      className='btn btn-primary transition'
-                      type='submit'
-                      disabled={isSubmitting}
+            <div className='row'>
+              <div id='formulario' className='col-md-12'>
+                <Formik
+                  innerRef={ref}
+                  initialValues={initFormDefault}
+                  validate={validation}
+                  onSubmit={sendForm}
+                >
+                  {({ handleSubmit, isSubmitting }) => (
+                    <Form
+                      data-aos='fade-up'
+                      id='form_contacto'
+                      onSubmit={handleSubmit}
                     >
-                      ENVIAR
-                    </button>
-                  </Form>
-                )}
-              </Formik>
+                      <h2>¡Cotizar ahora!</h2>
+                      <h5>
+                        Cotizaciones sin cargo, consulta por descuentos
+                        disponibles este mes.
+                      </h5>
+
+                      <div className='form-group'>
+                        <Field
+                          className='form-control'
+                          type='text'
+                          name='name'
+                          placeholder='Nombre'
+                        />
+                        <ErrorMessage name='name' component={ErrorInput} />
+                      </div>
+
+                      <div className='form-group'>
+                        <Field
+                          className='form-control'
+                          type='email'
+                          name='email'
+                          placeholder='Email'
+                        />
+                        <ErrorMessage name='email' component={ErrorInput} />
+                      </div>
+
+                      <div className='form-group'>
+                        <Field
+                          className='form-control'
+                          type='number'
+                          name='phone'
+                          placeholder='Teléfono'
+                        />
+                        <ErrorMessage name='phone' component={ErrorInput} />
+                      </div>
+
+                      <div className='form-group'>
+                        <Field
+                          className='form-control'
+                          as='textarea'
+                          name='comments'
+                          rows='4'
+                          placeholder='Que necesitás?'
+                          value={message}
+                          onChange={event => setMessage(event.target.value)}
+                        />
+                        <ErrorMessage name='comments' component={ErrorInput} />
+                      </div>
+
+                      <div className='form-group content_store'>
+                        <h4>Seleccioná un showroom de tu preferencia</h4>
+
+                        {stores &&
+                          stores.map((item, index) => (
+                            <div
+                              key={item.id}
+                              className='form-check form-check-inline'
+                            >
+                              <Field
+                                id={`input_${item.id}`}
+                                checked={item.value}
+                                name='store'
+                                className='form-check-input'
+                                type='radio'
+                                value={item.id}
+                              />
+                              <label
+                                className='form-check-label label_radio'
+                                htmlFor={`input_${item.id}`}
+                              >
+                                {item.name}
+                              </label>
+
+                              {stores.length === index + 1 && (
+                                <ErrorMessage
+                                  name='store'
+                                  component={ErrorInput}
+                                />
+                              )}
+                            </div>
+                          ))}
+                      </div>
+
+                      <div className='form-group form-check'>
+                        <label>
+                          <Field
+                            onChange={handleChange}
+                            checked={isSubscribed}
+                            type='checkbox'
+                            name='newsletter'
+                            id='newsletter'
+                          />
+                          <label
+                            className='form-check-label'
+                            htmlFor='newsletter'
+                          >
+                            Suscribir newsletter
+                          </label>
+                        </label>
+                      </div>
+
+                      <button
+                        id='send'
+                        className='btn btn-primary transition'
+                        type='submit'
+                        disabled={isSubmitting}
+                      >
+                        {wordBtn}
+                      </button>
+                    </Form>
+                  )}
+                </Formik>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }

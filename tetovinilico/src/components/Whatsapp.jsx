@@ -70,7 +70,7 @@ const Whatsapp = () => {
           </h6>
           <a
             id='whatsapp_desktop'
-            href={whatsapp[2]}
+            href={whatsapp.link_to_whatsapp}
             onClick={() =>
               setNextWhatsappNumberByRubro(import.meta.env.VITE_RUBRO)
             }
@@ -99,7 +99,7 @@ const Whatsapp = () => {
           <a
             id='whatsapp_mobile'
             className='transition'
-            href={whatsapp[2]}
+            href={whatsapp.link_to_whatsapp}
             onClick={() =>
               setNextWhatsappNumberByRubro(import.meta.env.VITE_RUBRO)
             }

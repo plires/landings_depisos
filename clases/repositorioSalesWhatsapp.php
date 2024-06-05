@@ -1,9 +1,8 @@
 <?php
 
-abstract class repositorioSalesWhastsapp {
+abstract class repositorioSalesWhastsapp
+{
 	public abstract function setNextWhatsappNumberByRubro($rubro, $salesEmailsForRubro);
-	public abstract function getCurrentWhatsappNumberByRubro($rubro, $salesEmailsForRubro);
-	public abstract function getArrayEmailsSales($rubro);
+	public abstract function getCurrentWhatsappNumberByRubro($db, $rubro);
+	public abstract function getArrayEmailsSales();
 }
-
-?>

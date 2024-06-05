@@ -1,20 +1,17 @@
 <?php
-	include_once( __DIR__ . '/includes/config.inc.php' );
-	include_once( __DIR__ . '/../vendor/autoload.php' );
-	include_once( __DIR__ . '/../includes/funciones_validar.php' );
-	include_once( __DIR__ . '/../clases/repositorioSQL.php' );
-	include_once( __DIR__ . '/../clases/app.php' );
+include_once(__DIR__ . '/includes/config.inc.php');
+include_once(__DIR__ . '/../vendor/autoload.php');
+include_once(__DIR__ . '/../includes/funciones_validar.php');
+include_once(__DIR__ . '/../clases/repositorioSQL.php');
 
-  $app = new App;
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
+$origin = 'Landing Porcelanatos Vite';
 
-  $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../" );
-  $dotenv->load(); 
+include_once(__DIR__ . '/../includes/handle-variables-config.php');
+include_once(__DIR__ . '/../includes/handle-form-submit.php');
 
-  include_once( __DIR__ . '/../includes/handle-variables-config.php' );
-
-  $origin = 'Landing Porcelanatos Vite';
-
-	include_once( __DIR__ . '/../includes/handle-form-submit.php' );
+$stores = $db->getRepositorioSellers()->getAllStores();
 ?>
 
 <!DOCTYPE html>
@@ -43,25 +40,24 @@
   <!-- WhatsApp -->
   <?php
 
-	  	$whatsapp_enabled = $app->whatsappEnabled();
-			
-			if ( $whatsapp_enabled ) {
-				
-		  	echo "
+  $whatsapp_enabled = $db->getRepositorioApp()->whatsappEnabled();
+
+  if ($whatsapp_enabled) {
+
+    echo "
 				<script>
-					window.rubro = '". RUBRO ."';
+					window.rubro = '" . RUBRO . "';
 				</script>
 				";
 
-		  	$whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro(RUBRO, EMAIL_VENTAS_PORCELANATOS);
-			 	include_once("./../includes/wapp.php");
+    $whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro($db, RUBRO);
+    include_once("./../includes/wapp.php");
+  }
 
-			}
-
-		?>
+  ?>
 
   <!-- Header -->
-  <?php include_once( __DIR__ . '/../includes/header.php' );  ?>
+  <?php include_once(__DIR__ . '/../includes/header.php');  ?>
 
   <!-- Imagen Destacada -->
   <section class="container-fluid imagen_destacada">
@@ -82,29 +78,30 @@
         <div class="col-md-12">
           <h1 class="wow fadeInDown">PORCELANATOS</h1>
 
-          <p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p>
+          <!-- <p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p> -->
 
           <p class="wow fadeInLeft cuotas">
-            Comprá tus pisos en hasta 12 cuotas <br>
+            Comprá tus pisos al mejor precio <br>
             <span>Comunicate con nosotros y conocé más detalles</span>
           </p>
 
           <!-- Formulario -->
           <form id="formulario" method="post" class="needs-validation wow fadeInUp" novalidate>
 
-            <?php include_once( __DIR__ . '/../includes/hidden-inputs.php' ); ?>
+            <?php include_once(__DIR__ . '/../includes/hidden-inputs.php'); ?>
 
-            <?php include_once( __DIR__ . '/../includes/errors.php' ); ?>
+            <?php include_once(__DIR__ . '/../includes/errors.php'); ?>
 
             <p class="leyenda_presupuesta">Presupuestá Ahora!</p>
 
-            <?php include_once( __DIR__ . '/../includes/input-name.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-email.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-phone.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-comments.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-recaptcha.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-newsletter.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-submit.php' ); ?>
+            <?php include_once(__DIR__ . '/../includes/input-name.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-email.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-phone.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-comments.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-store.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-recaptcha.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-newsletter.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-submit.php'); ?>
 
           </form>
           <!-- Formulario end -->
@@ -196,7 +193,7 @@
   <!-- Anti Manchas end -->
 
   <!-- Galeria -->
-  <?php include_once( __DIR__ . '/../includes/galeria-porcelanatos.inc.php' );  ?>
+  <?php include_once(__DIR__ . '/../includes/galeria-porcelanatos.inc.php');  ?>
 
   <!-- Varios -->
   <section class="container varios">
@@ -276,17 +273,17 @@
 
     <div class="row beneficios">
 
-      <div class="col-4 wow fadeInLeft">
+      <div class="col-6 wow fadeInLeft">
         <img class="img-fluid" src="img/presupuesto-sin-cargo.png" alt="pisos de porcelanatos presupuestos sin cargo">
         <p>Presupuestos Sin cargo</p>
       </div>
 
-      <div data-wow-delay="0.3s" class="col-4 wow fadeInLeft">
+      <!-- <div data-wow-delay="0.3s" class="col-4 wow fadeInLeft">
         <img class="img-fluid" src="img/cuotas-fijas.png" alt="pisos de porcelanatos Cuotas fijas en pesos">
         <p>Ahora 12 Cuotas fijas en pesos</p>
-      </div>
+      </div> -->
 
-      <div data-wow-delay="0.6s" class="col-4 wow fadeInLeft">
+      <div data-wow-delay="0.6s" class="col-6 wow fadeInLeft">
         <img class="img-fluid" src="img/importadores-directos.png" alt="pisos de porcelanatos Importadores Directos">
         <p>Importadores Directos</p>
       </div>
@@ -317,7 +314,7 @@
   <!-- Aplicaciones end -->
 
   <!-- Footer -->
-  <?php include_once( __DIR__ . '/../includes/footer.php' );  ?>
+  <?php include_once(__DIR__ . '/../includes/footer.php');  ?>
 
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="./../dist/main.js"></script>

@@ -3,22 +3,21 @@
 	include_once( __DIR__ . '/../vendor/autoload.php' );
 	include_once( __DIR__ . '/../includes/funciones_validar.php' );
 	include_once( __DIR__ . '/../clases/repositorioSQL.php' );
-	include_once( __DIR__ . '/../clases/app.php' );
-
-  $app = new App;
 
   $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../" );
   $dotenv->load(); 
 
-  include_once( __DIR__ . '/../includes/handle-variables-config.php' );
+  include_once(__DIR__ . '/../includes/handle-variables-config.php');
+  include_once(__DIR__ . '/../includes/handle-form-submit.php');
 
-	include_once( __DIR__ . '/../includes/handle-form-submit.php' );
+  $stores = $db->getRepositorioSellers()->getAllStores();
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
+
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -41,7 +40,7 @@
   <!-- WhatsApp -->
   <?php
 
-	  	$whatsapp_enabled = $app->whatsappEnabled();
+      $whatsapp_enabled = $db->getRepositorioApp()->whatsappEnabled();
 			
 			if ( $whatsapp_enabled ) {
 				
@@ -51,7 +50,7 @@
 				</script>
 				";
 
-		  	$whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro(RUBRO, EMAIL_VENTAS_DECKS);
+        $whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro($db, RUBRO);
 			 	include_once("./../includes/wapp.php");
 
 			}
@@ -99,6 +98,7 @@
             <?php include_once( __DIR__ . '/../includes/input-email.php' ); ?>
             <?php include_once( __DIR__ . '/../includes/input-phone.php' ); ?>
             <?php include_once( __DIR__ . '/../includes/input-comments.php' ); ?>
+            <?php include_once( __DIR__ . '/../includes/input-store.php' ); ?>
             <?php include_once( __DIR__ . '/../includes/input-recaptcha.php' ); ?>
             <?php include_once( __DIR__ . '/../includes/input-newsletter.php' ); ?>
             <?php include_once( __DIR__ . '/../includes/input-submit.php' ); ?>

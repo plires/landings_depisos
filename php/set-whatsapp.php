@@ -1,19 +1,17 @@
 <?php
-	
-	include_once( __DIR__ . '/../ventas.inc.php' );
-	include_once( __DIR__ . '/../vendor/autoload.php' );
-	include_once( __DIR__ . '/../clases/repositorioSQL.php' );
 
-	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../" );
-  $dotenv->load(); 
+// include_once(__DIR__ . '/../ventas.inc.php');
+include_once(__DIR__ . '/../vendor/autoload.php');
+include_once(__DIR__ . '/../clases/repositorioSQL.php');
 
-  $data = json_decode(file_get_contents('php://input'), true);
-	$rubro = $data['rubro'];
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
 
-	$db = new RepositorioSQL();
+$data = json_decode(file_get_contents('php://input'), true);
+$rubro_id = $data['rubro_id'];
 
-	$array_email_sales = $db->getRepositorioSalesWhastsapp()->getArrayEmailsSales($rubro);
+$db = new RepositorioSQL();
 
-	$db->getRepositorioSalesWhastsapp()->setNextWhatsappNumberByRubro($rubro, $array_email_sales);
+$array_email_sales = $db->getRepositorioSalesWhastsapp()->getArrayEmailsSales($rubro_id);
 
-?>
+$db->getRepositorioSalesWhastsapp()->setNextWhatsappNumberByRubro($rubro_id, $array_email_sales);

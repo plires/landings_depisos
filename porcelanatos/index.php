@@ -1,18 +1,16 @@
 <?php
-	include_once( __DIR__ . '/includes/config.inc.php' );
-	include_once( __DIR__ . '/../vendor/autoload.php' );
-	include_once( __DIR__ . '/../includes/funciones_validar.php' );
-	include_once( __DIR__ . '/../clases/repositorioSQL.php' );
-	include_once( __DIR__ . '/../clases/app.php' );
+include_once(__DIR__ . '/includes/config.inc.php');
+include_once(__DIR__ . '/../vendor/autoload.php');
+include_once(__DIR__ . '/../includes/funciones_validar.php');
+include_once(__DIR__ . '/../clases/repositorioSQL.php');
 
-  $app = new App;
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
 
-  $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../" );
-  $dotenv->load(); 
+include_once(__DIR__ . '/../includes/handle-variables-config.php');
+include_once(__DIR__ . '/../includes/handle-form-submit.php');
 
-  include_once( __DIR__ . '/../includes/handle-variables-config.php' );
-
-	include_once( __DIR__ . '/../includes/handle-form-submit.php' );
+$stores = $db->getRepositorioSellers()->getAllStores();
 ?>
 
 <!DOCTYPE html>
@@ -22,8 +20,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description"
-    content="Pisos de porcelanatos. Colores naturales. Las mejores marcas y el mejor precio del mercado">
+  <meta name="description" content="Pisos de porcelanatos. Colores naturales. Las mejores marcas y el mejor precio del mercado">
   <meta name="author" content="Librecomunicacion">
 
   <!-- Favicons -->
@@ -41,25 +38,24 @@
   <!-- WhatsApp -->
   <?php
 
-	  	$whatsapp_enabled = $app->whatsappEnabled();
-			
-			if ( $whatsapp_enabled ) {
-				
-		  	echo "
+  $whatsapp_enabled = $db->getRepositorioApp()->whatsappEnabled();
+
+  if ($whatsapp_enabled) {
+
+    echo "
 				<script>
-					window.rubro = '". RUBRO ."';
+					window.rubro = '" . RUBRO . "';
 				</script>
 				";
 
-		  	$whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro(RUBRO, EMAIL_VENTAS_PORCELANATOS);
-			 	include_once("./../includes/wapp.php");
+    $whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro($db, RUBRO);
+    include_once("./../includes/wapp.php");
+  }
 
-			}
-
-		?>
+  ?>
 
   <!-- Header -->
-  <?php include_once( __DIR__ . '/../includes/header.php' );  ?>
+  <?php include_once(__DIR__ . '/../includes/header.php');  ?>
 
   <!-- Imagen Destacada -->
   <section class="container-fluid imagen_destacada">
@@ -90,19 +86,20 @@
           <!-- Formulario -->
           <form id="formulario" method="post" class="needs-validation wow fadeInUp" novalidate>
 
-            <?php include_once( __DIR__ . '/../includes/hidden-inputs.php' ); ?>
+            <?php include_once(__DIR__ . '/../includes/hidden-inputs.php'); ?>
 
-            <?php include_once( __DIR__ . '/../includes/errors.php' ); ?>
+            <?php include_once(__DIR__ . '/../includes/errors.php'); ?>
 
             <p class="leyenda_presupuesta">Presupuestá Ahora!</p>
 
-            <?php include_once( __DIR__ . '/../includes/input-name.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-email.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-phone.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-comments.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-recaptcha.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-newsletter.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-submit.php' ); ?>
+            <?php include_once(__DIR__ . '/../includes/input-name.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-email.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-phone.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-comments.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-store.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-recaptcha.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-newsletter.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-submit.php'); ?>
 
           </form>
           <!-- Formulario end -->
@@ -149,7 +146,7 @@
   <!-- Anti Manchas end -->
 
   <!-- Galeria -->
-  <?php include_once( __DIR__ . '/../includes/galeria-porcelanatos.inc.php' );  ?>
+  <?php include_once(__DIR__ . '/../includes/galeria-porcelanatos.inc.php');  ?>
 
   <!-- Varios -->
   <section class="container varios">
@@ -270,7 +267,7 @@
   <!-- Aplicaciones end -->
 
   <!-- Footer -->
-  <?php include_once( __DIR__ . '/../includes/footer.php' );  ?>
+  <?php include_once(__DIR__ . '/../includes/footer.php');  ?>
 
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="./../dist/main.js"></script>

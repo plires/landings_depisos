@@ -1,0 +1,39 @@
+.content_store {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content_store .label_showroom {
+  text-align: left;
+  font-size: 0.85rem;
+  color: #495057;
+}
+
+.content_store .form-check {
+  margin-top: 0 !important;
+  color: #495057 !important;
+}
+
+.content_store .form-check:last-child {
+  margin-top: 5px !important;
+}
+
+#formulario {
+  background: rgb(250, 250, 250) !important;
+  padding: 30px !important;
+}
+
+
+
+
+/* MEDIA QUERIS */
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1200px) {}
+
+@media (min-width: 1400px) {}

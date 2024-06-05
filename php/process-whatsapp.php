@@ -10,7 +10,6 @@
   }
   
   require_once( __DIR__ . '/../vendor/autoload.php' );
-  require_once( __DIR__ . '/../clases/app.php' );
   include_once( __DIR__ . '/../clases/repositorioSQL.php' );
     
   $response_array = [
@@ -20,21 +19,19 @@
   ];
   
   $require = json_decode(file_get_contents('php://input'));
-  
+    
   $dotenv = Dotenv\Dotenv::createImmutable( __DIR__ . '/../' );
   $dotenv->safeLoad();
   
   $db = new RepositorioSQL();
-  $app = new App();
+  
+  $whatsapp_enabled = $db->getRepositorioApp()->whatsappEnabled();
 
-  $whatsapp_enabled = $app->whatsappEnabled();
-    
   if ( $whatsapp_enabled ) {
     
     try {
-      $emails = $db->getRepositorioContacts()->getSalesEmails($require->rubro);
-      $whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro($require->rubro, $emails);
-  
+      $whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro($db, $require->rubro);
+      
       $response_array['success'] = true;
       $response_array['data'] = $whatsapp;
     } catch (\Throwable $th) {
