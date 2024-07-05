@@ -1,9 +1,9 @@
-// import { useContext } from 'react'
-// import { StoreContext } from '../context/store'
+import { useContext } from 'react'
+import { StoreContext } from '../context/store'
 import { useState, useEffect } from 'react'
 
 import {
-  getSlidesPrincipal /* , getCurrentMonth */,
+  getSlidesPrincipal , getCurrentMonth,
 } from './../utils/dataUtils'
 
 const SlidePrincipal = ({ interval }) => {
@@ -28,7 +28,7 @@ const SlidePrincipal = ({ interval }) => {
   }, [screenSize])
 
   const slidesPrincipal = getSlidesPrincipal('slidesPrincipal')
-  // const { isPromo } = useContext(StoreContext)
+  const { isPromo } = useContext(StoreContext)
 
   return (
     <div
@@ -58,7 +58,7 @@ const SlidePrincipal = ({ interval }) => {
             )}
 
             <div className='carousel-caption'>
-              {/* {isPromo && (
+              {isPromo && (
                 <div className='content_promo'>
                   <img src={`./img/tetovinilico/${item.img_promo_src}`} alt={item.img_promo_alt} />
                   <p
@@ -70,7 +70,7 @@ const SlidePrincipal = ({ interval }) => {
                     }}
                   ></p>
                 </div>
-              )} */}
+              )}
 
               <p
                 dangerouslySetInnerHTML={{ __html: item.txt_default }}

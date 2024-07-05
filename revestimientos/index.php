@@ -81,6 +81,7 @@ $stores = $db->getRepositorioSellers()->getAllStores();
             Comprá tus revestimientos al mejor precio <br>
             <span>Comunicate con nosotros y conocé más detalles</span>
           </p>
+          <img class="img-fluid" src="./../img/promo-aguinaldo.gif" alt="promo aguinaldo"><br><br>
 
           <!-- Formulario -->
           <form id="formulario" method="post" class="needs-validation wow fadeInUp" novalidate>
