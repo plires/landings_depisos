@@ -2,7 +2,6 @@
 
 require_once("repositorioContacts.php");
 require_once("repositorioSellers.php");
-// require_once("../ventas.inc.php");
 
 class RepositorioContactsSQL extends repositorioContacts
 {
@@ -33,7 +32,10 @@ class RepositorioContactsSQL extends repositorioContacts
         return null;
       }
     } catch (PDOException $e) {
-      // Manejo de errores en caso de fallo en la consulta
+      $message = $e->getMessage();
+
+      $db = new RepositorioSQL();
+      $db->getRepositorioApp()->notificationsToEmail("<h1>Error al verificar si el usuario ya consultó anteriormente.</h1><h2>Email Usuario: $email</h2><h2>Store: $store</h2><h2>Tabla: 'landings'</h2><h2>Descripción: $message </h2>", __FUNCTION__, __FILE__, __LINE__);
       return null;
     }
   }
@@ -90,62 +92,86 @@ class RepositorioContactsSQL extends repositorioContacts
     return $sellers;
   }
 
-  public function getSellerForThisUser($rubro, $userFound, $store)
+  public function setNextSellerByRubroAndStore($rubro, $store, $next_position)
   {
+
+    try {
+      // Iniciar una transacción
+      $this->conexion->beginTransaction();
+
+      // Obtener la posición actual del array desde la base de datos
+      $sql = 'UPDATE landing_form SET current_position=:current_position WHERE rubro_id= '. $rubro['id'] .' AND store_id='. (int)$store .' ';
+      $stm = $this->conexion->prepare($sql);
+      $stm->execute(array(':current_position' => $next_position));
+      $row = $stm->fetch(PDO::FETCH_ASSOC);
+
+      // Confirmar la transacción
+      $this->conexion->commit();
+      return true;
+
+    } catch (\Throwable $th) {
+      $name_rubro = $rubro['name'];
+      $message = $th->getMessage();
+
+      $db = new RepositorioSQL();
+      $db->getRepositorioApp()->notificationsToEmail("<h1>Error en el intentar setear el proximo vendedor pra recibir consultas via formulario.</h1><h2>Rubro: $name_rubro</h2><h2>Store: $store</h2><h2>Tabla: 'landing_form'</h2><h2>Descripción: $message </h2>",  __FUNCTION__, __FILE__, __LINE__);
+    }
     
+  }
+
+  public function getNextSellerByRubroAndStore($salesEmails, $rubro, $store)
+  {
+
+    $sql = "select * from landing_form WHERE rubro_id='" . $rubro['id'] . "' AND store_id= '" . (int)$store . "' "; // Obtenemos el ultimo registro del rubro
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->execute();
+    $seller = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $last_seller = array_slice($salesEmails, $seller['current_position'], 1);
+    
+    if ( empty($last_seller) ) {
+      $seller_to_return = $salesEmails[0]; // devolver el primero del array de ventas
+      $set_next_position = $this->setNextSellerByRubroAndStore($rubro, $store, 1); // setear la proxima posicion en tabla landing_form
+    } else {
+      $seller_to_return = $last_seller[0]; // devolver posicion actual del array de ventas
+      $set_next_position = $this->setNextSellerByRubroAndStore($rubro, $store, $seller['current_position'] + 1); // setear la proxima posicion en tabla landing_form
+    }
+
+    return $seller_to_return;
+    
+  }
+
+  public function getSellerForThisUser($rubro, $sellerEmailAssignedForThisUser, $store)
+  {
+
     // se asigna un array vacio inicial
     $emailTo = [];
 
     $salesEmails = $this->getSalesEmails($rubro, $store);
+
+    $db = new RepositorioSQL();
+    $rubro = $db->getRepositorioSellers()->getRubroByName($rubro);
     
-    // si el usuario ya esta en la base de datos y tenia asignado un vendedor, se intentara asignar nuevamente a este vendedor (si esta dipsponible en el actual array de ventas al momento de la consulta)
-    if ($userFound !== NULL) {
+    // si el usuario ya esta en la base de datos y tenia asignado un vendedor, se intentara asignar nuevamente a este vendedor (si esta disponible en el actual array de ventas al momento de la consulta)
+    if ($sellerEmailAssignedForThisUser !== NULL) {
 
       // recorremos el array de emails de vendedores para ver si el mail del vendedor asignado en su momento,
       // se encurentra presente hoy en el array actual de vendedores (pudo haber pasado que haya sido asignado a un vendedor que ya no trabaje mas)
       foreach ($salesEmails as $seller) {
 
-        // Si el mail del vendedor asignado al usuario se encuentra en este momento en el array de vendedores actual 
-        if ($seller['email'] === $userFound) {
+        if ($seller['email'] === $sellerEmailAssignedForThisUser) {
           $emailTo = $seller; //se vuelve a asignar
+          return $emailTo;
         }
+
       }
-
-      // si el array sigue vacio quiere decir que el vendedor asignado a este usuario ya no se encuentra en el array actual de ventas para este rubro
-      if (empty($emailTo)) {
-        $emailTo = $salesEmails[0]; // con lo cual, simplemente asignamos el primer vendedor disponible del array actual
-      }
-
-      return $emailTo; // devolvemos el vendedor para este usuario
-
+      
     }
 
-    // Si el usuario no hizo consultas y no esta en base de datos guardado (es una consulta con mail nuevo)
-    $sql = "select to_email from landings WHERE rubro='" . $rubro . "' ORDER BY id DESC LIMIT 1"; // Obtenemos el ultimo registro del rubro
-    $stmt = $this->conexion->prepare($sql);
-    $stmt->execute();
-    $lastEmail = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$lastEmail) { //si no hay consultas grabadas en la base de datos para ese rubro
-      return $salesEmails[0]; // simplemente devolvemos el primer vendedor de la lista
-    }
-
-    foreach ($salesEmails as $key => $email) { // Recorremos el array de emails de destino
-
-      if ($email['email'] === $lastEmail['to_email']) { // cuando lo encuentra
-
-        if (isset($salesEmails[$key + 1])) { // si existe la key (si no se paso) 
-          $emailTo = $salesEmails[$key + 1]; // Le suma 1 a la clave del array y lo asigna a la variable $emailTo
-        } else {
-          $emailTo = $salesEmails[0]; // si el key no existe comienza nuevamente desde la primera posicion y se la asigna a la variable $emailTo
-        }
-      }
-    }
-
-    if (empty($emailTo)) { // si el ultimo registro no contiene un mail que figure dentro del array $salesEmails
-      $emailTo = $salesEmails[0]; // Asigno el primero de todos
-    }
-
-    return $emailTo; // devolvemos el vendedor a asignar para este usuario
+    // usuario nuevo o ya consulto y el vendedor no existe mas en la lista
+    $emailTo = $this->getNextSellerByRubroAndStore($salesEmails, $rubro, $store);
+  
+    return $emailTo;
 
   }
 }
