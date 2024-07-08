@@ -28,7 +28,11 @@ class RepositorioSalesWhastsappSQL extends repositorioSalesWhastsapp
 
       return $sellers;
     } catch (\Throwable $th) {
-      // var_dump($th->getMessage());
+      $message = $th->getMessage();
+
+      $db = new RepositorioSQL();
+      $db->getRepositorioApp()->notificationsToEmail("<h1>Error al obtener los vendedores activos.</h1><h2>Tabla: 'sellers'</h2><h2>Descripción: $message </h2>", __FUNCTION__, __FILE__, __LINE__);
+
       return null;
     }
   }
