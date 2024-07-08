@@ -66,7 +66,6 @@
     }
     
   } catch (\Throwable $th) {
-    echo"<pre>";var_dump($th);exit;
     
     array_push($response_array['errors'], 'Ocurrió un error al enviar la consulta, por favor intente nuevamente o si prefiere contacte a ' . $emailTo['email']);
  
