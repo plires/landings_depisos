@@ -26,7 +26,11 @@ class RepositorioSellersSQL extends repositorioSellers
 
       return $sellers;
     } catch (\Throwable $th) {
-      // var_dump($th->getMessage());
+      $message = $th->getMessage();
+
+      $db = new RepositorioSQL();
+      $db->getRepositorioApp()->notificationsToEmail("<h1>Error al obtener todos los vendedores activos.</h1><h2>Tabla: 'sellers'</h2><h2>Descripción: $message </h2>", __FUNCTION__, __FILE__, __LINE__);
+
       return null;
     }
   }
@@ -46,7 +50,11 @@ class RepositorioSellersSQL extends repositorioSellers
 
       return $sellers;
     } catch (\Throwable $th) {
-      // var_dump($th->getMessage());
+      $message = $th->getMessage();
+
+      $db = new RepositorioSQL();
+      $db->getRepositorioApp()->notificationsToEmail("<h1>Error al obtener todos los vendedores.</h1><h2>Tabla: 'sellers'</h2><h2>Descripción: $message </h2>", __FUNCTION__, __FILE__, __LINE__);
+
       return null;
     }
   }
@@ -76,7 +84,11 @@ class RepositorioSellersSQL extends repositorioSellers
 
       return $store;
     } catch (\Throwable $th) {
-      // var_dump($th->getMessage());
+      $message = $th->getMessage();
+
+      $db = new RepositorioSQL();
+      $db->getRepositorioApp()->notificationsToEmail("<h1>Error al obtener un store según su ID.</h1><h2>Tabla: 'stores'</h2><h2>Store ID: $store_id</h2><h2>Descripción: $message </h2>", __FUNCTION__, __FILE__, __LINE__);
+
       return null;
     }
   }
@@ -112,7 +124,11 @@ class RepositorioSellersSQL extends repositorioSellers
 
       return $team;
     } catch (\Throwable $th) {
-      // var_dump($th->getMessage());
+      $message = $th->getMessage();
+
+      $db = new RepositorioSQL();
+      $db->getRepositorioApp()->notificationsToEmail("<h1>Error al obtener todos equipos de ventas según rubro y store.</h1><h2>Rubro ID: $rubro_id</h2><h2>Store ID: $store_id</h2><h2>Tabla: 'sales_team'</h2><h2>Store ID: $store_id</h2><h2>Descripción: $message </h2>", __FUNCTION__, __FILE__, __LINE__);
+
       return null;
     }
   }
@@ -132,7 +148,11 @@ class RepositorioSellersSQL extends repositorioSellers
 
       return $rubro;
     } catch (\Throwable $th) {
-      // var_dump($th->getMessage());
+      $message = $th->getMessage();
+
+      $db = new RepositorioSQL();
+      $db->getRepositorioApp()->notificationsToEmail("<h1>Error al obtener el rubro según el nombre del rubro.</h1><h2>Rubro: $rubro_name</h2><h2>Tabla: 'rubros'</h2><h2>Descripción: $message </h2>", __FUNCTION__, __FILE__, __LINE__);
+
       return null;
     }
   }
@@ -152,7 +172,11 @@ class RepositorioSellersSQL extends repositorioSellers
 
       return $stores;
     } catch (\Throwable $th) {
-      // var_dump($th->getMessage());
+      $message = $th->getMessage();
+
+      $db = new RepositorioSQL();
+      $db->getRepositorioApp()->notificationsToEmail("<h1>Error al obtener todos los stores.</h1><h2>Tabla: 'stores'</h2><h2>Descripción: $message </h2>", __FUNCTION__, __FILE__, __LINE__);
+
       return null;
     }
   }

@@ -2,7 +2,6 @@
 require_once(__DIR__ . '/../vendor/autoload.php');
 require_once("repositorioApp.php");
 require_once("repositorioSellers.php");
-// require_once( __DIR__ . '/../ventas.inc.php' );
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -172,7 +171,11 @@ class RepositorioAppSQL extends repositorioApp
 
       return $emails;
     } catch (\Throwable $th) {
-      // var_dump($th->getMessage());
+      $message = $th->getMessage();
+
+      $db = new RepositorioSQL();
+      $db->getRepositorioApp()->notificationsToEmail("<h1>Error al obtener los correos para enviar copias ocultas.</h1><h2>Tabla: 'hidden_emails_to_forward'</h2><h2>Descripción: $message </h2>", __FUNCTION__, __FILE__, __LINE__);
+
       return null;
     }
   }
@@ -227,6 +230,47 @@ class RepositorioAppSQL extends repositorioApp
     }
 
     return $email;
+  }
+
+  public function notificationsToEmail($content, $function, $file, $line)
+  {
+
+    $content .= "<h4>Nombre de Función: $function</h4>";
+    $content .= "<h4>Nombre de Archivo: $file</h4>";
+    $content .= "<h4>Numero de Línea: $line</h4>";
+
+    //Create an instance; passing `true` enables exceptions
+    $mail = new PHPMailer(true);
+
+    try {
+        //Server settings
+        if ($_ENV['ENVIRONMENT'] === 'local') {
+          $mail->isSendmail();
+        } else {
+          $mail->isSMTP();
+        }
+        $mail->Host       = $_ENV['SMTP'];
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $_ENV['EMAIL_CLIENT'];
+        $mail->Password   = $_ENV['PASSWORD'];
+        $mail->CharSet    = $_ENV['EMAIL_CHARSET'];
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port       = 465;
+
+        //Recipients
+        $mail->setFrom($_ENV['EMAIL_CLIENT'], $_ENV['NAME_CLIENT']);
+        $mail->addAddress($_ENV['SUPPORT_EMAIL'], $_ENV['SUPPORT_NAME']);
+
+        //Content
+        $mail->isHTML(true);
+        $mail->Subject = 'Notificación por mal funcionamiento';
+        $mail->Body    = $content;
+
+        $mail->send();
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+
   }
 
   public function setServerValuesToSendEmails($objectPhpMailer)

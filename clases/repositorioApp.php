@@ -13,4 +13,5 @@ abstract class repositorioApp
   public abstract function sendEmail($destinatario, $template, $post, $destinationSales);
   public abstract function selectEmailTemplate($post, $to, $destinationSales);
   public abstract function getHiddenEmailsToForward();
+  public abstract function notificationsToEmail($content, $function, $file, $line);
 }
