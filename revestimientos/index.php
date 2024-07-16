@@ -81,7 +81,6 @@ $stores = $db->getRepositorioSellers()->getAllStores();
             Comprá tus revestimientos al mejor precio <br>
             <span>Comunicate con nosotros y conocé más detalles</span>
           </p>
-          <img class="img-fluid" src="./../img/promo-aguinaldo.gif" alt="promo aguinaldo"><br><br>
 
           <!-- Formulario -->
           <form id="formulario" method="post" class="needs-validation wow fadeInUp" novalidate>
@@ -169,8 +168,7 @@ $stores = $db->getRepositorioSellers()->getAllStores();
       <div class="row">
         <div class="col-md-12 text-center">
           <a href="#formulario" class="btn_to_form">
-            <img id="img_revestimientos" class="wow fadeInUp img-fluid" src="#"
-              alt="revestimientos de paredes resistentes al sol ejemplos">
+            <img id="img_revestimientos" class="wow fadeInUp img-fluid" src="#" alt="revestimientos de paredes resistentes al sol ejemplos">
           </a>
         </div>
       </div>
@@ -183,8 +181,7 @@ $stores = $db->getRepositorioSellers()->getAllStores();
     <div class="container">
       <div class="row">
         <div class="col-md-10 m-auto">
-          <img class="wow fadeInLeft img-fluid" src="img/icono-resistente-sol.png"
-            alt="revestimientos de paredes resistentes al sol">
+          <img class="wow fadeInLeft img-fluid" src="img/icono-resistente-sol.png" alt="revestimientos de paredes resistentes al sol">
           <p class="wow fadeInUp">Se trata de un <span>material inalterable,</span> resistente al sol, al calor y
             humedad extrema, que <span>no se deforma.</span></p>
         </div>
