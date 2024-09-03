@@ -246,7 +246,7 @@ $stores = $db->getRepositorioSellers()->getAllStores();
           <h2>PISOS VINÍLICOS: APLICACIONES RECOMENDADAS</h2>
           <p>
             Los pisos vinílicos son ideales para entornos comerciales y domésticos. Desarrollados con materiales de
-            primera calidad. <br> <span>Aptos para alto tránsito.</span>
+            primera calidad. El mejor precio en pisos <br> <span>Aptos para alto tránsito.</span>
           </p>
           <p class="dudas">¿TENÉS DUDAS O CONSULTAS?</p>
           <a href="#formulario" class="btn btn-primary transition btn_to_form">CONTACTANOS</a>
