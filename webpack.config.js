@@ -22,10 +22,14 @@ const stylesRules = {
 }
 
 module.exports = {
+  mode: 'production',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
+  },
+  optimization: {
+    minimize: true, // La minificación está habilitada por defecto en modo producción
   },
   devtool: 'source-map',
   plugins: [
