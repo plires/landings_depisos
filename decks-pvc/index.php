@@ -155,10 +155,10 @@ $stores = $db->getRepositorioSellers()->getAllStores();
 
     <div class="row wow fadeInUp">
       <div class="col-md-6">
-        <div class="col-md-6">
-          <img class="img-fluid" src="img/deck-dual.jpg" alt="deck dual ">
-          <h3>DECK DUAL</h3>
-        </div>
+        <img class="img-fluid" src="img/deck-dual.jpg" alt="deck dual ">
+        <h3>DECK DUAL</h3>
+      </div>
+      <div class="col-md-6">
         <img class="img-fluid" src="img/trascend.jpg" alt="deck ecologico y sintetico trascend">
         <h3>TRASCEND</h3>
       </div>
