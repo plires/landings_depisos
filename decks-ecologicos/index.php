@@ -1,28 +1,26 @@
 <?php
-	include_once( __DIR__ . '/includes/config.inc.php' );
-	include_once( __DIR__ . '/../vendor/autoload.php' );
-	include_once( __DIR__ . '/../includes/funciones_validar.php' );
-	include_once( __DIR__ . '/../clases/repositorioSQL.php' );
+include_once(__DIR__ . '/includes/config.inc.php');
+include_once(__DIR__ . '/../vendor/autoload.php');
+include_once(__DIR__ . '/../includes/funciones_validar.php');
+include_once(__DIR__ . '/../clases/repositorioSQL.php');
 
-  $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../" );
-  $dotenv->load(); 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
 
-  include_once(__DIR__ . '/../includes/handle-variables-config.php');
-  include_once(__DIR__ . '/../includes/handle-form-submit.php');
+include_once(__DIR__ . '/../includes/handle-variables-config.php');
+include_once(__DIR__ . '/../includes/handle-form-submit.php');
 
-  $stores = $db->getRepositorioSellers()->getAllStores();
+$stores = $db->getRepositorioSellers()->getAllStores();
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description"
-    content="Decks ecologicos. Fabricado con materiales reciblables. No se pudre ni se astilla. Sin Matenimiento.">
+  <meta name="description" content="Decks ecologicos. Fabricado con materiales reciblables. No se pudre ni se astilla. Sin Matenimiento.">
   <meta name="author" content="Librecomunicacion">
 
   <!-- Favicons -->
@@ -40,28 +38,39 @@
   <!-- WhatsApp -->
   <?php
 
-      $whatsapp_enabled = $db->getRepositorioApp()->whatsappEnabled();
-			
-			if ( $whatsapp_enabled ) {
-				
-		  	echo "
+  $whatsapp_enabled = $db->getRepositorioApp()->whatsappEnabled();
+
+  if ($whatsapp_enabled) {
+
+    echo "
 				<script>
-					window.rubro = '". RUBRO ."';
+					window.rubro = '" . RUBRO . "';
 				</script>
 				";
 
-        $whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro($db, RUBRO);
-			 	include_once("./../includes/wapp.php");
+    $whatsapp = $db->getRepositorioSalesWhastsapp()->getCurrentWhatsappNumberByRubro($db, RUBRO);
+    include_once("./../includes/wapp.php");
+  }
 
-			}
-
-		?>
+  ?>
 
   <!-- Header -->
-  <?php include_once( __DIR__ . '/../includes/header.php' );  ?>
+  <?php include_once(__DIR__ . '/../includes/header.php');  ?>
 
   <!-- Imagen Destacada -->
   <section class="container-fluid imagen_destacada">
+
+    <!-- Promo Vigencia -->
+    <div class="promoVigencia row wow fadeInRight">
+      <div class="col-md-12">
+        <picture>
+          <source srcset="./img/dual-promo.webp" type="image/webp">
+          <source srcset="./img/dual-promo.jpg" type="image/jpeg">
+          <img class="img-fluid" src="./img/dual-promo.jpg" alt="promocion decks de dos colores">
+        </picture>
+      </div>
+    </div>
+    <!-- Promo Vigencia end -->
 
     <!-- Mejores Marcas -->
     <div class="mejores_marcas wow fadeInRight">
@@ -80,28 +89,48 @@
           <h1 class="wow fadeInDown">DECKS <span>ECOLÓGICOS</span></h1>
 
           <!-- <p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p> -->
-          <p class="wow fadeInLeft cuotas">
+          <!-- <p class="wow fadeInLeft cuotas">
             Comprá tus decks al mejor precio. <br>
             <span>Comunicate con nosotros y conocé más detalles</span>
+          </p> -->
+
+          <p class="wow fadeInLeft cuotas">
+            <span>Aprovechá nuestra DUAL PROMO y llevate el mejor Deck de dos colores <br>y a un precios increíbles.</span>
           </p>
+          <p class="wow fadeInLeft cuotas">
+            ¡SOLO POR NOVIEMBRE!
+          </p>
+
+          <!-- Productos Promo Vigencia -->
+          <div class="productosPromoVigencia">
+            <div class="col-12 wow fadeInDown">
+              <picture>
+                <source srcset="./img/promo-a.webp" type="image/webp">
+                <source srcset="./img/promo-a.jpg" type="image/jpeg">
+                <img class="img-fluid" src="./img/promo-a.jpg" alt="promocion noviembre decks ecologico dual - dos colores">
+              </picture>
+            </div>
+
+          </div>
+          <!-- Productos Promo Vigencia end -->
 
           <!-- Formulario -->
           <form id="formulario" method="post" class="needs-validation wow fadeInUp" novalidate>
 
-            <?php include_once( __DIR__ . '/../includes/hidden-inputs.php' ); ?>
+            <?php include_once(__DIR__ . '/../includes/hidden-inputs.php'); ?>
 
-            <?php include_once( __DIR__ . '/../includes/errors.php' ); ?>
+            <?php include_once(__DIR__ . '/../includes/errors.php'); ?>
 
             <p class="leyenda_presupuesta">Presupuestá Ahora!</p>
 
-            <?php include_once( __DIR__ . '/../includes/input-name.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-email.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-phone.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-comments.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-store.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-recaptcha.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-newsletter.php' ); ?>
-            <?php include_once( __DIR__ . '/../includes/input-submit.php' ); ?>
+            <?php include_once(__DIR__ . '/../includes/input-name.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-email.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-phone.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-comments.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-store.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-recaptcha.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-newsletter.php'); ?>
+            <?php include_once(__DIR__ . '/../includes/input-submit.php'); ?>
 
           </form>
           <!-- Formulario end -->
@@ -174,7 +203,7 @@
   <!-- Tipologia end -->
 
   <!-- Galeria -->
-  <?php include_once( __DIR__ . '/../includes/galeria-decks.inc.php' );  ?>
+  <?php include_once(__DIR__ . '/../includes/galeria-decks.inc.php');  ?>
 
   <!-- Varios -->
   <section class="container varios">
@@ -262,7 +291,7 @@
   <!-- Aplicaciones end -->
 
   <!-- Footer -->
-  <?php include_once( __DIR__ . '/../includes/footer.php' );  ?>
+  <?php include_once(__DIR__ . '/../includes/footer.php');  ?>
 
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="./../dist/main.js"></script>
