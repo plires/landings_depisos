@@ -20,13 +20,14 @@ $stores = $db->getRepositorioSellers()->getAllStores();
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Decks sintéticos. Fabricado con materiales reciblables. No se pudre ni se astilla. Sin Matenimiento.">
+  <meta name="description"
+    content="Decks sintéticos. Fabricado con materiales reciblables. No se pudre ni se astilla. Sin Matenimiento.">
   <meta name="author" content="Librecomunicacion">
 
   <!-- Favicons -->
   <?php include('./../includes/favicon.inc.php'); ?>
 
-  <title>Decks Plásticos sin mantenimiento.</title>
+  <title>Decks Sintéticos sin mantenimiento.</title>
   <link rel="stylesheet" href="./css/app.css">
 
   <?php include('./../includes/tag_manager_head.php') ?>
@@ -60,18 +61,6 @@ $stores = $db->getRepositorioSellers()->getAllStores();
   <!-- Imagen Destacada -->
   <section class="container-fluid imagen_destacada">
 
-    <!-- Promo Vigencia -->
-    <div class="promoVigencia row wow fadeInRight">
-      <div class="col-md-12">
-        <picture>
-          <source srcset="./img/dual-promo.webp" type="image/webp">
-          <source srcset="./img/dual-promo.jpg" type="image/jpeg">
-          <img class="img-fluid" src="./img/dual-promo.jpg" alt="promocion decks de dos colores">
-        </picture>
-      </div>
-    </div>
-    <!-- Promo Vigencia end -->
-
     <!-- Mejores Marcas -->
     <div class="mejores_marcas wow fadeInRight">
       <img class="img-fluid" src="img/ecologico.png" alt="deck trex y otras marcas en decks sintéticos">
@@ -89,30 +78,10 @@ $stores = $db->getRepositorioSellers()->getAllStores();
           <h1 class="wow fadeInDown">DECKS <span>SINTÉTICOS</span></h1>
 
           <!-- <p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p> -->
-          <!-- <p class="wow fadeInLeft cuotas">
+          <p class="wow fadeInLeft cuotas">
             Comprá tus decks al mejor precio. <br>
             <span>Comunicate con nosotros y conocé más detalles</span>
-          </p> -->
-
-          <p class="wow fadeInLeft cuotas">
-            <span>Aprovechá nuestra DUAL PROMO y llevate el mejor Deck de dos colores <br>y a un precios increíbles.</span>
           </p>
-          <p class="wow fadeInLeft cuotas">
-            ¡SOLO POR NOVIEMBRE!
-          </p>
-
-          <!-- Productos Promo Vigencia -->
-          <div class="productosPromoVigencia">
-            <div class="col-12 wow fadeInDown">
-              <picture>
-                <source srcset="./img/promo-a.webp" type="image/webp">
-                <source srcset="./img/promo-a.jpg" type="image/jpeg">
-                <img class="img-fluid" src="./img/promo-a.jpg" alt="promocion noviembre decks ecologico dual - dos colores">
-              </picture>
-            </div>
-
-          </div>
-          <!-- Productos Promo Vigencia end -->
 
           <!-- Formulario -->
           <form id="formulario" method="post" class="needs-validation wow fadeInUp" novalidate>
@@ -154,10 +123,6 @@ $stores = $db->getRepositorioSellers()->getAllStores();
     </div>
 
     <div class="row wow fadeInUp">
-      <div class="col-md-6">
-        <img class="img-fluid" src="img/deck-dual.jpg" alt="deck dual ">
-        <h3>DECK DUAL</h3>
-      </div>
       <div class="col-md-6">
         <img class="img-fluid" src="img/trascend.jpg" alt="deck ecologico y sintetico trascend">
         <h3>TRASCEND</h3>

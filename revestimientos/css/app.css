@@ -79,19 +79,6 @@ header div {
 
 /* Header end*/
 
-/* Promocion */
-.promoVigencia img {
-  max-width: 250px !important;
-  margin: -15px auto -90px auto !important;
-}
-
-.productosPromoVigencia .col-4 {
-  padding-left: 6px !important;
-  padding-right: 6px !important;
-}
-
-/* Promocion end */
-
 /* Imágen Destacada */
 .imagen_destacada {
   margin-bottom: 60px;
@@ -501,17 +488,6 @@ footer .libre:hover {
 
 @media (min-width: 576px) {
 
-  /* Promocion */
-  .productosPromoVigencia {
-    margin-bottom: 30px;
-  }
-
-  .productosPromoVigencia img {
-    max-width: 100% !important;
-  }
-
-  /* Promocion end */
-
   /* Imágen Destacada */
   .imagen_destacada {
     margin-top: 100px;
@@ -733,24 +709,6 @@ footer .libre:hover {
 }
 
 @media (min-width: 992px) {
-
-  /* Promocion */
-  .promoVigencia {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-  }
-
-  .promoVigencia .col-md-12 {
-    margin: 0;
-  }
-
-  .promoVigencia img {
-    max-width: 200px !important;
-    margin: initial !important;
-  }
-
-  /* Promocion end */
 
   /* Imágen Destacada */
   .imagen_destacada h1 span {

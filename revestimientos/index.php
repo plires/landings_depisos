@@ -60,18 +60,6 @@ $stores = $db->getRepositorioSellers()->getAllStores();
   <!-- Imagen Destacada -->
   <section class="container-fluid imagen_destacada">
 
-    <!-- Promo Vigencia -->
-    <div class="promoVigencia row wow fadeInRight">
-      <div class="col-md-12">
-        <picture>
-          <source srcset="./img/promo-stock.webp" type="image/webp">
-          <source srcset="./img/promo-stock.jpg" type="image/jpeg">
-          <img class="img-fluid" src="./img/promo-stock.jpg" alt="promocion noviembre wall panel y perfiles">
-        </picture>
-      </div>
-    </div>
-    <!-- Promo Vigencia end -->
-
     <!-- Mejores Marcas -->
     <div class="mejores_marcas wow fadeInRight">
       <img class="img-fluid" src="img/marcas.png" alt="mejores marcas porcelanatos">
@@ -89,45 +77,10 @@ $stores = $db->getRepositorioSellers()->getAllStores();
           <h1 class="wow fadeInDown">REVESTIMIENTOS<br><span>INTERIOR/EXTERIOR</span></h1>
 
           <!-- <p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p> -->
-          <!-- <p class="wow fadeInLeft cuotas">
+          <p class="wow fadeInLeft cuotas">
             Comprá tus revestimientos al mejor precio <br>
             <span>Comunicate con nosotros y conocé más detalles</span>
-          </p> -->
-
-          <p class="wow fadeInLeft cuotas">
-            <span>Aprovechá nuestra promo Stock Out y llevate Wall Panel <br>y perfiles WPC a precios increíbles.</span>
           </p>
-          <p class="wow fadeInLeft cuotas">
-            ¡SOLO POR NOVIEMBRE!
-          </p>
-
-          <!-- Productos Promo Vigencia -->
-          <div class="productosPromoVigencia">
-            <div class="row">
-              <div class="col-4 wow fadeInDown">
-                <picture>
-                  <source srcset="./img/promo-a.webp" type="image/webp">
-                  <source srcset="./img/promo-a.jpg" type="image/jpeg">
-                  <img class="img-fluid" src="./img/promo-a.jpg" alt="promocion noviembre wall panel y perfiles - a">
-                </picture>
-              </div>
-              <div class="col-4 wow fadeInDown">
-                <picture>
-                  <source srcset="./img/promo-b.webp" type="image/webp">
-                  <source srcset="./img/promo-b.jpg" type="image/jpeg">
-                  <img class="img-fluid" src="./img/promo-b.jpg" alt="promocion noviembre wall panel y perfiles - b">
-                </picture>
-              </div>
-              <div class="col-4 wow fadeInDown">
-                <picture>
-                  <source srcset="./img/promo-c.webp" type="image/webp">
-                  <source srcset="./img/promo-c.jpg" type="image/jpeg">
-                  <img class="img-fluid" src="./img/promo-c.jpg" alt="promocion noviembre wall panel y perfiles - c">
-                </picture>
-              </div>
-            </div>
-          </div>
-          <!-- Productos Promo Vigencia end -->
 
           <!-- Formulario -->
           <form id="formulario" method="post" class="needs-validation wow fadeInUp" novalidate>
