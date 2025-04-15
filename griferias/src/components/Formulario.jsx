@@ -115,7 +115,7 @@ export default function Formulario() {
     name: '',
     email: '',
     phone: '',
-    store: false,
+    store: true,
     comments: message,
     newsletter: true,
   }
@@ -191,7 +191,7 @@ export default function Formulario() {
                         <ErrorMessage name='comments' component={ErrorInput} />
                       </div>
 
-                      <div className='form-group content_store'>
+                      <div style={{display: "none"}} className='form-group content_store'>
                         <h4>Seleccioná un showroom de tu preferencia</h4>
 
                         {stores &&

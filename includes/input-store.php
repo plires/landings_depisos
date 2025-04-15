@@ -1,6 +1,6 @@
 <?php if($stores): ?>
   <!-- Store -->
-  <div class="form-group content_store">
+  <div style="display:none" class="form-group content_store">
     <p class="label_showroom">Seleccioná un showroom de tu preferencia</p>
     <div class="form-check">
       
@@ -12,7 +12,7 @@
 
       <?php foreach ($inverted_stores as $key => $store): ?>
         <div class="content_input">
-          <input required class="form-check-input" value="<?= $store['id'] ?>" type="radio" name="store"
+          <input checked required class="form-check-input" value="<?= $store['id'] ?>" type="radio" name="store"
           id="store<?= $store['id'] ?>">
           <label title="<?= $store['description'] ?>" class="form-check-label" for="store<?= $store['id'] ?>">
             <?= $store['name'] ?>
