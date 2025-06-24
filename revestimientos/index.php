@@ -76,9 +76,13 @@ $stores = $db->getRepositorioSellers()->getAllStores();
         <div class="col-md-12">
           <h1 class="wow fadeInDown">REVESTIMIENTOS<br><span>INTERIOR/EXTERIOR</span></h1>
 
-          <!-- <p class="wow fadeInLeft promocion">¡Pagá en cuotas!</p> -->
-          <p class="wow fadeInLeft cuotas">
+          <!-- <p class="wow fadeInLeft cuotas">
             Comprá tus revestimientos al mejor precio <br>
+            <span>Comunicate con nosotros y conocé más detalles</span>
+          </p> -->
+
+          <p class="wow fadeInLeft cuotas">
+            ¿Ya pensaste en cómo vas a aprovechar tu aguinaldo? <br>
             <span>Comunicate con nosotros y conocé más detalles</span>
           </p>
 
